@@ -1,0 +1,43 @@
+.stat-item{
+    width: 23%;
+    border-radius: 4px;
+    border: 1px solid #cbc8d0;
+    margin-bottom: 25px;
+    background-color: white;
+}
+
+.stat-items{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.stat-items-icon{
+    width: 30%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 7px;
+}
+
+.stat-item-cart-info{
+    height: 120px;
+    display: flex;
+    /*margin-bottom: 10px;*/
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ffa200;
+}
+.stat-item h4{
+    font-size: 30px;
+}
+
+.stat-item p{
+    color: grey;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+}

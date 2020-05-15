@@ -1,0 +1,18 @@
+.ModalChange {
+    position: absolute;
+    top: 25%;
+    /* bottom: 49%; */
+    left: 25%;
+    right: 25%;
+    background-color: #d7d7d7;
+    width: 50%;
+    height: 28%;
+}
+
+.ModalChange i {
+    color: white;
+}
+
+.ModalChange h5{
+    color: white;
+}

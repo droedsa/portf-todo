@@ -1,0 +1,31 @@
+.container{
+    max-width: 1100px;
+
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.header i{
+    font-size: 21px;
+    cursor: pointer;
+}
+.header h4{
+    padding-left: 25px;
+    margin: 0;
+}
+
+.header-all{
+
+}
+
+.header-close{
+    cursor: pointer;
+}
+
+
