@@ -1,0 +1,30 @@
+.ModalBordSettings{
+    position: absolute;
+    top: 25%;
+    /* bottom: 40%; */
+    left: 25%;
+    /* right: 25%; */
+    width: 50%;
+    height: auto;
+}
+
+.ModalBordSettings i {
+    color: white;
+}
+
+.ModalBordSettings h5{
+    color: white;
+
+}
+
+.ModalBordSettings .modal-body {
+    background-color: #d7d7d7;
+}
+
+.add-priority{
+    margin: 0;
+    padding: 0;
+}
+
+
+

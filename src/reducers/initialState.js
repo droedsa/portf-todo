@@ -22,10 +22,10 @@ export const initialState = {
     },
 
     categories: {
-        show:true,
+        show: true,
         CategoriesId: 1000,
         selected: 'Все',
-        searchText:'',
+        searchText: '',
         customCategories: [
             {
                 id: 1,
@@ -40,11 +40,42 @@ export const initialState = {
             open: false,
             text: ''
         },
-        modalChangeCategoriesState:{
-            open:false,
-            text:'',
-            id:0
+        modalChangeCategoriesState: {
+            open: false,
+            text: '',
+            id: 0
         }
+    },
+
+    prioritySettings: {
+        show: false,
+        addNewPriority: {
+            show: false,
+            id: 5,
+            text: ''
+        },
+        changePriorityText: {
+            id:0,
+            show: false,
+            text: ''
+        },
+        priorities: [
+            {
+                id: 1,
+                priority: 'Высокий',
+                color: '#FF0000'
+            },
+            {
+                id: 2,
+                priority: 'Нормальный',
+                color: '#FFDD00'
+            },
+            {
+                id: 3,
+                priority: 'Низкий',
+                color: '#40FF2C'
+            }
+        ]
     }
 };
 

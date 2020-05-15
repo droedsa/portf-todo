@@ -1,0 +1,19 @@
+.ModalSettingPriorityAdd{
+    position: absolute;
+    top: 30%;
+    bottom: 40%;
+    left: 25%;
+    right: 25%;
+    background-color: #d7d7d7;
+    width: 50%;
+    height: 30%;
+}
+
+.ModalSettingPriorityAdd i {
+    color: white;
+}
+
+.ModalSettingPriorityAdd h5{
+    color: white;
+}
+

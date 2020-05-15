@@ -1,8 +1,8 @@
 import {initialState} from "./initialState";
 
 const reducer = (state = initialState, action) => {
-
     switch (action.type) {
+        // Modal ADD Categories
         case 'MODAL_ADD_CATEGORIES_CLOSE_MODAL':
             return {
                 ...state,
@@ -14,7 +14,6 @@ const reducer = (state = initialState, action) => {
                     }
                 }
             };
-
         case 'MODAL_ADD_CATEGORIES_OPEN_MODAL':
             return {
                 ...state,
@@ -26,7 +25,6 @@ const reducer = (state = initialState, action) => {
                     }
                 }
             };
-
         case 'MODAL_ADD_CATEGORIES_CHANGE_TEXT_MODAL' :
             return {
                 ...state,
@@ -38,7 +36,6 @@ const reducer = (state = initialState, action) => {
                     }
                 }
             };
-
         case 'MODAL_ADD_CATEGORIES_SAVE_BTN_MODAL':
             return {
                 ...state,
@@ -63,8 +60,7 @@ const reducer = (state = initialState, action) => {
                 }
             };
 
-        // Modal Change Categories
-
+        // Modal CHANGE Categories
         case 'MODAL_CHANGE_CATEGORIES_CLOSE':
             return {
                 ...state,
@@ -127,7 +123,6 @@ const reducer = (state = initialState, action) => {
                     }
                 }
             };
-
         case 'MODAL_CHANGE_CATEGORIES_DELETE': {
             const Item = state.categories.customCategories.find(({id}) =>
                 state.modals.modalChangeCategoriesState.id === id);
@@ -151,6 +146,7 @@ const reducer = (state = initialState, action) => {
             }
         }
 
+        // Categories control panel
         case 'CHANGE_CATEGORIES': {
             return {
                 ...state,
@@ -160,7 +156,6 @@ const reducer = (state = initialState, action) => {
                 }
             }
         }
-
         case 'SEARCH_CATEGORIES': {
             return {
                 ...state,
@@ -170,7 +165,6 @@ const reducer = (state = initialState, action) => {
                 }
             }
         }
-
         case 'SHOW_CATEGORY_PANEL': {
             return {
                 ...state,
@@ -181,14 +175,189 @@ const reducer = (state = initialState, action) => {
             }
         }
 
+        //Modal Priority Settings \\ISOLATED
+        case 'MODAL_PRIORITY_SETTINGS_OPEN': {
+            return {
+                ...state,
+                prioritySettings: {
+                    ...state.prioritySettings,
+                    show: true
+                }
+            }
+        }
+        case 'MODAL_PRIORITY_SETTINGS_CLOSE': {
+            return {
+                ...state,
+                prioritySettings: {
+                    ...state.prioritySettings,
+                    show: false
+                }
+            }
+        }
+        case 'MODAL_PRIORITY_SETTINGS_COLOR_CHANGE': {
+            const Item = state.prioritySettings.priorities.find(({id}) => id === action.id);
+            const idx = state.prioritySettings.priorities.findIndex(({id}) => id === Item.id);
+            const newItem = {
+                ...Item,
+                color: action.color
+            };
+            return {
+                ...state,
+                prioritySettings: {
+                    ...state.prioritySettings,
+                    priorities: [
+                        ...state.prioritySettings.priorities.slice(0, idx),
+                        newItem,
+                        ...state.prioritySettings.priorities.slice(idx + 1)
+                    ]
+                }
+            }
+        }
+        case 'MODAL_PRIORITY_SETTINGS_DELETE': {
+            const idx = state.prioritySettings.priorities.findIndex(({id}) => id === action.payload);
+            return {
+                ...state,
+                prioritySettings: {
+                    ...state.prioritySettings,
+                    priorities: [
+                        ...state.prioritySettings.priorities.slice(0, idx),
+                        ...state.prioritySettings.priorities.slice(idx + 1)
+                    ]
+                }
+            }
+        }
+
+        // MODAL SETTINGS PRIORITY add new priority \\ISOLATED
+        case 'MODAL_PRIORITY_SETTINGS_ADD_NEW_PRIORITY_OPEN': {
+            return {
+                ...state,
+                prioritySettings: {
+                    ...state.prioritySettings,
+                    addNewPriority: {
+                        ...state.prioritySettings.addNewPriority,
+                        show: true
+                    }
+                }
+            }
+        }
+        case 'MODAL_PRIORITY_SETTINGS_ADD_NEW_PRIORITY_CLOSE': {
+
+            return {
+                ...state,
+                prioritySettings: {
+                    ...state.prioritySettings,
+                    addNewPriority: {
+                        ...state.prioritySettings.addNewPriority,
+                        show: false,
+                        priority: ''
+                    }
+                }
+            }
+        }
+        case 'MODAL_PRIORITY_SETTINGS_ADD_NEW_PRIORITY_CHANGE_TEXT': {
+            return {
+                ...state,
+                prioritySettings: {
+                    ...state.prioritySettings,
+                    addNewPriority: {
+                        ...state.prioritySettings.addNewPriority,
+                        text: action.payload
+                    }
+                }
+            }
+        }
+        case 'MODAL_PRIORITY_SETTINGS_ADD_NEW_PRIORITY_SAVE': {
+            return {
+                ...state,
+                prioritySettings: {
+                    ...state.prioritySettings,
+                    priorities: [
+                        ...state.prioritySettings.priorities,
+                        {
+                            id: state.prioritySettings.addNewPriority.id + 1,
+                            priority: state.prioritySettings.addNewPriority.text,
+                            color: '#ffff'
+                        }
+                    ],
+                    addNewPriority: {
+                        id: state.prioritySettings.addNewPriority.id + 1,
+                        text: ''
+                    }
+                }
+            }
+        }
+
+        // MODAL SETTINGS PRIORITY change priority \\ISOLATED
+        case 'MODAL_PRIORITY_SETTINGS_CHANGE_OPEN': {
+            const Item = state.prioritySettings.priorities.find(({id}) => id === action.payload);
+            return {
+                ...state,
+                prioritySettings: {
+                    ...state.prioritySettings,
+                    changePriorityText: {
+                        show: true,
+                        text: Item.priority,
+                        id: action.payload
+                    }
+                }
+            }
+        }
+        case 'MODAL_PRIORITY_SETTINGS_CHANGE_CLOSE': {
+            return {
+                ...state,
+                prioritySettings: {
+                    ...state.prioritySettings,
+                    changePriorityText: {
+                        show: false,
+                        text: '',
+                        id: null
+                    }
+                }
+            }
+        }
+        case 'MODAL_PRIORITY_SETTINGS_CHANGE_TEXT': {
+            return {
+                ...state,
+                prioritySettings: {
+                    ...state.prioritySettings,
+                    changePriorityText: {
+                        ...state.prioritySettings.changePriorityText,
+                        show: true,
+                        text: action.payload
+                    }
+                }
+            }
+        }
+        case 'MODAL_PRIORITY_SETTINGS_CHANGE_SAVE': {
+            const Item = state.prioritySettings.priorities.find(({id}) =>
+                id === state.prioritySettings.changePriorityText.id);
+            const idx = state.prioritySettings.priorities.findIndex(({id}) => id === Item.id);
+            const newItem = {
+                ...Item,
+                priority: state.prioritySettings.changePriorityText.text
+            };
+            return {
+                ...state,
+                prioritySettings: {
+                    ...state.prioritySettings,
+                    priorities: [
+                        ...state.prioritySettings.priorities.slice(0, idx),
+                        newItem,
+                        ...state.prioritySettings.priorities.slice(idx + 1)
+                    ],
+                    changePriorityText: {
+                        text: '',
+                        show: false,
+                        id: null
+                    }
+
+                }
+            }
+        }
+
         default :
             return state;
     }
-
-    // return{
-    //     bord:updateBord(state,action),
-    //     categories: updateCategories(state,action)
-    // }
 };
 
 export default reducer;

@@ -5,25 +5,31 @@ import StatisticsPanel from "../statistics-panel/statistics-panel";
 import TasksTable from "../tasks-table/tasks-table";
 import {connect} from "react-redux";
 import {showCategoryPanel} from "../../actions/CategoriesAC";
+import ModalBordSettings from "../modal-window/modal-bording-settings/modal-bord-settings";
+import {modalSettingsPriorityOpen} from "../../actions/modalAC";
 
-const Board = ({showCP}) => {
+const Board = ({showCP,selected,showModalPrioritySettings}) => {
     return (
         <div className='container-fluid'>
             <div className="header">
-                <button onClick={showCP} className='m-0 p-0 btn'>
-                    <i className="fas fa-bars"/>
-                </button>
+                <div className='header-panel-info'>
+                    <button onClick={showCP} className='m-0 p-0 btn'>
+                        <i className="fas fa-bars"/>
+                    </button>
 
-                <h4 className='header-all'>Все</h4>
-                <h4 className='header-close'>Скрыть статитику</h4>
+                    <h4 className='header-all'>{selected}</h4>
+                    <h4 className='header-close'>Скрыть статитику</h4>
+                </div>
+                <button onClick={showModalPrioritySettings} className='m-0 p-0 btn'>
+                    <i className="fas fa-cog settings-btn"/>
+                </button>
             </div>
 
             <StatisticsPanel/>
-
             <SortPanel/>
-
             <TasksTable/>
 
+            <ModalBordSettings/>
 
             <div className="task-bord">
 
@@ -32,15 +38,16 @@ const Board = ({showCP}) => {
     )
 };
 
-const mapStateToProps = ({showCP}) => {
+const mapStateToProps = ({showCP,categories:{selected},showModalPrioritySettings}) => {
     return {
-        showCP
+        showCP,selected,showModalPrioritySettings
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        showCP: () => dispatch(showCategoryPanel())
+        showCP: () => dispatch(showCategoryPanel()),
+        showModalPrioritySettings:()=>dispatch(modalSettingsPriorityOpen())
     }
 };
 

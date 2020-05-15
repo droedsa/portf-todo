@@ -9,6 +9,7 @@
     height: 50px;
     align-items: center;
     margin-bottom: 25px;
+    justify-content: space-between;
 }
 
 .header i{
@@ -24,8 +25,16 @@
 
 }
 
+.header-panel-info{
+    display: flex;
+}
+
 .header-close{
     cursor: pointer;
+}
+
+.settings-btn{
+
 }
 
 

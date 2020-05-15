@@ -1,19 +1,18 @@
 import React from "react";
 import './category-control-panel.css'
 import {connect} from "react-redux";
+
 import ModalAddCategories from "../modal-window/modal-add-categories/modal-add-categories";
-import {modalAddCategoriesOpenModal} from "../../actions";
 import ModalChangeCategories from "../modal-window/modal-change-categories/modal-change-categories";
-import {modalChangeCategoriesOpen} from "../../actions/modalAC";
+
 import {changeCategoriesClick, changeCategoriesSearchPanel} from "../../actions/CategoriesAC";
+import {modalAddCategoriesOpenModal, modalChangeCategoriesOpen} from "../../actions/modalAC";
 
 const CategoryControlPanel = ({
                                   selected, allTasK, customCategories,
                                   openModalAddCategories, openModalChangeCategories,
                                   changeCategories, searchText, changeSearchInput, show
                               }) => {
-
-    console.log(customCategories)
     const customCat = customCategories.map(item => {
         if (item.name.includes(searchText)) {
             return <div key={item.id}
@@ -29,7 +28,7 @@ const CategoryControlPanel = ({
         } else return null
     });
 
-    const showPanel = show? {display: 'block'}:{display: 'none'};
+    const showPanel = show ? {display: 'block'} : {display: 'none'};
     return (
         <div className='categories ' style={showPanel}>
             <div className="categories-title  d-flex">
