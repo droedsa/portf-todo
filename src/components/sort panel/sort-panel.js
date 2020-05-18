@@ -1,7 +1,7 @@
 import React from "react";
 import './sort-panel.css'
 
-const SortPanel = () => {
+const SortPanel = ({priorities,onClickAddNewTask}) => {
     return <div className="sort-panel d-flex">
         <input className='form-control' type="text" placeholder='Поиск в текущей категории'/>
 
@@ -13,14 +13,16 @@ const SortPanel = () => {
 
         <select className='form-control'>
             <option>Все приоритеты</option>
-            <option>Низкий</option>
-            <option>Средний</option>
-            <option>Высокий</option>
-            <option>Очень высокий</option>
+            {
+                priorities.map(({priority,id}) => <option key={id}>
+                        {priority}
+                    </option>
+                )
+            }
         </select>
 
         <button className='btn form-control'>Сбросить фильтры</button>
-        <button className='btn btn-primary form-control'>Добавить</button>
+        <button onClick={onClickAddNewTask} className='btn btn-primary form-control'>Добавить</button>
     </div>
 };
 

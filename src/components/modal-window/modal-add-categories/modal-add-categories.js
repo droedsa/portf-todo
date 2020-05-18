@@ -9,7 +9,7 @@ import {
 } from "../../../actions/modalAC";
 
 
-const ModalAddCategories = ({modals, modalClose,modalChangeText,modalSaveBtnText}) => {
+const ModalAddCategories = ({modals, modalClose, modalChangeText, modalSaveBtnText}) => {
     const {modalAddCategoriesState: {open, text}} = modals;
     Modal.setAppElement('#root');
 
@@ -25,7 +25,8 @@ const ModalAddCategories = ({modals, modalClose,modalChangeText,modalSaveBtnText
                 </button>
             </div>
             <div className="modal-body">
-                <input value={text} onChange={event => modalChangeText(event.target.value)} type="text" className='form-control'/>
+                <input value={text} onChange={event => modalChangeText(event.target.value)} type="text"
+                       className='form-control'/>
                 <button onClick={modalSaveBtnText} className='btn btn-primary mt-3'>
                     Сохранить
                 </button>
@@ -36,9 +37,9 @@ const ModalAddCategories = ({modals, modalClose,modalChangeText,modalSaveBtnText
     </div>
 };
 
-const mapStateToProps = ({modals, modalClose,modalChangeText,modalSaveBtnText}) => {
+const mapStateToProps = ({categories: {modals},modalClose,modalChangeText,modalSaveBtnText}) => {
     return {
-        modals, modalClose,modalChangeText,modalSaveBtnText
+        modals, modalClose, modalChangeText, modalSaveBtnText
     }
 };
 

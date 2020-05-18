@@ -64,6 +64,9 @@ const CategoryControlPanel = ({
 };
 
 const mapStateToProps = ({
+
+    
+
                              categories: {selected, customCategories, searchText, show},
                              bord: {allTasK}, openModalAddCategories, openModalChangeCategories,
                              changeCategories, changeSearchInput

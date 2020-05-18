@@ -7,8 +7,11 @@ import {connect} from "react-redux";
 import {showCategoryPanel} from "../../actions/CategoriesAC";
 import ModalBordSettings from "../modal-window/modal-bording-settings/modal-bord-settings";
 import {modalSettingsPriorityOpen} from "../../actions/modalAC";
+import ModalAddNewTask from "../modal-window/modal-add-task/modal-add-task";
+import {modalCreateTaskOpen} from "../../actions/bord";
+import ModalChangeTask from "../modal-window/modal-change-task/modal-change-task";
 
-const Board = ({showCP,selected,showModalPrioritySettings}) => {
+const Board = ({showCP, selected, showModalPrioritySettings, priorities, onClickAddNewTask}) => {
     return (
         <div className='container-fluid'>
             <div className="header">
@@ -26,11 +29,12 @@ const Board = ({showCP,selected,showModalPrioritySettings}) => {
             </div>
 
             <StatisticsPanel/>
-            <SortPanel/>
+            <SortPanel priorities={priorities} onClickAddNewTask={() => onClickAddNewTask()}/>
             <TasksTable/>
 
             <ModalBordSettings/>
-
+            <ModalAddNewTask/>
+            <ModalChangeTask/>
             <div className="task-bord">
 
             </div>
@@ -38,16 +42,17 @@ const Board = ({showCP,selected,showModalPrioritySettings}) => {
     )
 };
 
-const mapStateToProps = ({showCP,categories:{selected},showModalPrioritySettings}) => {
+const mapStateToProps = ({showCP, categories: {selected}, showModalPrioritySettings, prioritySettings: {priorities}, onClickAddNewTask}) => {
     return {
-        showCP,selected,showModalPrioritySettings
+        showCP, selected, showModalPrioritySettings, priorities, onClickAddNewTask
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         showCP: () => dispatch(showCategoryPanel()),
-        showModalPrioritySettings:()=>dispatch(modalSettingsPriorityOpen())
+        showModalPrioritySettings: () => dispatch(modalSettingsPriorityOpen()),
+        onClickAddNewTask: () => dispatch(modalCreateTaskOpen())
     }
 };
 

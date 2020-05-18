@@ -43,7 +43,7 @@ const ModalChangeCategories = ({modalClose, modalChangeText, modalSaveBtnText, m
     </div>
 };
 
-const mapStateToProps = ({modals: {modalChangeCategoriesState}, modalClose, modalChangeText, modalSaveBtnText, modalDeleteBtn}) => {
+const mapStateToProps = ({categories:{modals: {modalChangeCategoriesState}, modalClose, modalChangeText, modalSaveBtnText, modalDeleteBtn}}) => {
     return {modalClose, modalChangeText, modalSaveBtnText, modalChangeCategoriesState, modalDeleteBtn}
 };
 

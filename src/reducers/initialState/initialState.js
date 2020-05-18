@@ -3,22 +3,43 @@ export const initialState = {
         allTasK: 1,
         tasks: [
             {
-                color: '#dbb600',
                 id: 1,
                 name: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque commodi ciendis suscipit ullam?',
                 term: '20.10.20',
                 priority: 'Высокий',
-                categories: 'машины'
+                categories: 'Машины',
+                done: true
             },
             {
-                color: '#db003c',
                 id: 2,
                 name: 'Lorem ipsum dolor sit ciendis suscipit ullam?',
                 term: '20.10.20',
                 priority: 'Высокий',
-                categories: 'машины'
+                categories: 'Машины',
+                done: true
             }
-        ]
+        ],
+
+        modal: {
+            createTask: {
+                show: false,
+                id: 4,
+                name: '',
+                term: '',
+                priority: '',
+                categories: 'Все'
+            },
+
+            changeTask: {
+                show: false,
+                id: 0,
+                name: '',
+                term: '',
+                priority: '',
+                categories: '',
+                done: null
+            }
+        }
     },
 
     categories: {
@@ -32,20 +53,21 @@ export const initialState = {
                 name: 'Машины',
                 count: 1
             }
-        ]
-    },
+        ],
 
-    modals: {
-        modalAddCategoriesState: {
-            open: false,
-            text: ''
-        },
-        modalChangeCategoriesState: {
-            open: false,
-            text: '',
-            id: 0
+        modals: {
+            modalAddCategoriesState: {
+                open: false,
+                text: ''
+            },
+            modalChangeCategoriesState: {
+                open: false,
+                text: '',
+                id: 0
+            }
         }
     },
+
 
     prioritySettings: {
         show: false,
@@ -55,7 +77,7 @@ export const initialState = {
             text: ''
         },
         changePriorityText: {
-            id:0,
+            id: 0,
             show: false,
             text: ''
         },
