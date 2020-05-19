@@ -8,7 +8,7 @@ export const initialState = {
                 term: '20.10.20',
                 priority: 'Высокий',
                 categories: 'Машины',
-                done: true
+                done: false
             },
             {
                 id: 2,
@@ -16,7 +16,7 @@ export const initialState = {
                 term: '20.10.20',
                 priority: 'Высокий',
                 categories: 'Машины',
-                done: true
+                done: false
             }
         ],
 
@@ -51,7 +51,6 @@ export const initialState = {
             {
                 id: 1,
                 name: 'Машины',
-                count: 1
             }
         ],
 
@@ -85,17 +84,17 @@ export const initialState = {
             {
                 id: 1,
                 priority: 'Высокий',
-                color: '#FF0000'
+                color: '#e57373'
             },
             {
                 id: 2,
                 priority: 'Нормальный',
-                color: '#FFDD00'
+                color: '#ffb74d'
             },
             {
                 id: 3,
                 priority: 'Низкий',
-                color: '#40FF2C'
+                color: '#64b5f6'
             }
         ]
     }

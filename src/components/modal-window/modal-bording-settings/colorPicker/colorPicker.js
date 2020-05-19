@@ -1,34 +1,40 @@
 import {SketchPicker} from "react-color";
 import React, {useState} from "react";
 import './colorPicker.css'
+import {makeStyles} from "@material-ui/core/styles";
+import Dialog from "@material-ui/core/Dialog";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 
 const ColorPicker = ({priority, id, changeColor, color, deletePriority, openChangeMenu}) => {
 
     const [showCP, setShowCP] = useState(false);
+    return <div className='event-panel'>
 
-    return <React.Fragment>
-        <h4>{priority}</h4>
-        <div className='event-panel'>
+        <Typography variant={'h6'}>{priority}</Typography>
+        <div>
             <div className='picker'>
-                <div className='swatch' onClick={() => setShowCP(showCP => !showCP)}>
-                    <div style={{backgroundColor: color}} className='color'/>
-                </div>
                 {
-                    showCP ? <div className='popover'>
-                        <div className="cover" onClick={() => setShowCP(false)}/>
+                    <Dialog
+                        open={showCP}
+                        onClose={()=>setShowCP(false)}>
+
                         <SketchPicker color={color} onChange={event => changeColor(id, event.hex)}/>
-                    </div> : null
+                    </Dialog>
                 }
             </div>
-            <button onClick={() => deletePriority(id)} className='btn'>
+            <Button  onClick={() => setShowCP(showCP => !showCP)}>
+                <div style={{backgroundColor: color}} className='color'/>
+            </Button>
+            <Button onClick={() => deletePriority(id)}>
                 <i className="far fa-trash-alt"/>
-            </button>
+            </Button>
 
-            <button onClick={() => openChangeMenu(id)} className='btn'>
+            <Button onClick={() => openChangeMenu(id)}>
                 <i className="fas fa-pen"/>
-            </button>
+            </Button>
         </div>
-    </React.Fragment>
+    </div>
 };
 
 export default ColorPicker;

@@ -10,35 +10,35 @@ import {modalSettingsPriorityOpen} from "../../actions/modalAC";
 import ModalAddNewTask from "../modal-window/modal-add-task/modal-add-task";
 import {modalCreateTaskOpen} from "../../actions/bord";
 import ModalChangeTask from "../modal-window/modal-change-task/modal-change-task";
+import Typography from "@material-ui/core/Typography";
+import clsx from "clsx";
+import Container from "@material-ui/core/Container";
 
-const Board = ({showCP, selected, showModalPrioritySettings, priorities, onClickAddNewTask}) => {
+const Board = ({showCP, selected, showModalPrioritySettings, priorities, onClickAddNewTask, classes, open}) => {
     return (
-        <div className='container-fluid'>
-            <div className="header">
-                <div className='header-panel-info'>
-                    <button onClick={showCP} className='m-0 p-0 btn'>
-                        <i className="fas fa-bars"/>
-                    </button>
+        <main
+            className={clsx(classes.content, {
+                [classes.contentShift]: open,
+            })}
+        >
+            <div className={classes.drawerHeader}/>
+            <Container>
 
-                    <h4 className='header-all'>{selected}</h4>
-                    <h4 className='header-close'>Скрыть статитику</h4>
+
+                <StatisticsPanel/>
+
+                <SortPanel priorities={priorities} onClickAddNewTask={() => onClickAddNewTask()}/>
+                <TasksTable/>
+
+                <ModalBordSettings/>
+                <ModalAddNewTask/>
+                <ModalChangeTask/>
+                <div className="task-bord">
                 </div>
-                <button onClick={showModalPrioritySettings} className='m-0 p-0 btn'>
-                    <i className="fas fa-cog settings-btn"/>
-                </button>
-            </div>
+            </Container>
+        </main>
 
-            <StatisticsPanel/>
-            <SortPanel priorities={priorities} onClickAddNewTask={() => onClickAddNewTask()}/>
-            <TasksTable/>
 
-            <ModalBordSettings/>
-            <ModalAddNewTask/>
-            <ModalChangeTask/>
-            <div className="task-bord">
-
-            </div>
-        </div>
     )
 };
 

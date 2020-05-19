@@ -198,7 +198,8 @@ const bord = (state, action) => {
                 name: state.modal.changeTask.name,
                 categories: state.modal.changeTask.categories,
                 priority: state.modal.changeTask.priority,
-                term: state.modal.changeTask.term
+                term: state.modal.changeTask.term,
+                done:Item.done
             };
             return {
                 ...state,

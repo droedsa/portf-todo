@@ -1,12 +1,7 @@
-.ModalBordSettings{
-    position: absolute;
-    top: 25%;
-    /* bottom: 40%; */
-    left: 25%;
-    /* right: 25%; */
-    width: 50%;
-    height: auto;
+.dialog{
+    width: 100px;
 }
+
 
 .ModalBordSettings i {
     color: white;

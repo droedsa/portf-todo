@@ -6,31 +6,32 @@ import {
     modalSettingsPriorityAddNewChangeText,
     modalSettingsPriorityAddNewClose, modalSettingsPriorityAddNewSave,
 } from "../../../../actions/modalAC";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import TextField from "@material-ui/core/TextField";
+import DialogActions from "@material-ui/core/DialogActions";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
 
 
 const ModalSettingsPriorityAddCategories = ({closeModal, show, text, changeModalText,saveNewPriority}) => {
-    Modal.setAppElement('#root');
-    return <div>
-        <Modal
-            isOpen={show}
-            className="ModalSettingPriorityAdd"
+    return <Dialog
+            open={show}
         >
-            <div className="modal-header bg-primary">
-                <h5 className="modal-title ">Добавление категории</h5>
-                <button onClick={closeModal} className='btn'>
-                    <i className="fas fa-times"/>
-                </button>
-            </div>
-            <div className="modal-body">
-                <input value={text} onChange={event => changeModalText(event.target.value)} type="text"
-                       className='form-control'/>
-                <button onClick={saveNewPriority} className='btn btn-primary mt-3'>
+            <DialogTitle style={{width: 400}}>Добавление категории</DialogTitle>
+            <DialogContent>
+                <TextField style={{width: 400}} value={text} onChange={event => changeModalText(event.target.value)}
+                           id="standard-basic" label="Название (10 символов)"/>
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={saveNewPriority}  color="primary">
                     Сохранить
-                </button>
-            </div>
-        </Modal>
-
-    </div>
+                </Button>
+                <Button onClick={closeModal} color="primary" autoFocus>
+                    Закрыть
+                </Button>
+            </DialogActions>
+        </Dialog>
 };
 
 const mapStateToProps = ({closeModal, prioritySettings: {addNewPriority: {show, text}, changeModalText,saveNewPriority}}) => {

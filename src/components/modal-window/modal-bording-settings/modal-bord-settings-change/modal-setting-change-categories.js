@@ -7,31 +7,34 @@ import {
     modalSettingsPriorityChangeSave,
     modalSettingsPriorityChangeText,
 } from "../../../../actions/modalAC";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import TextField from "@material-ui/core/TextField";
+import DialogActions from "@material-ui/core/DialogActions";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
 
 
 const ModalSettingsPriorityChangeCategories = ({closeModal, show, text, changeModalText, savePriority}) => {
     Modal.setAppElement('#root');
-    return <div>
-        <Modal
-            isOpen={show}
-            className="ModalSettingPriorityChange"
-        >
-            <div className="modal-header bg-primary">
-                <h5 className="modal-title ">Изменение категории</h5>
-                <button onClick={closeModal} className='btn'>
-                    <i className="fas fa-times"/>
-                </button>
-            </div>
-            <div className="modal-body">
-                <input value={text} onChange={event => changeModalText(event.target.value)} type="text"
-                       className='form-control'/>
-                <button onClick={savePriority} className='btn btn-primary mt-3'>
-                    Сохранить
-                </button>
-            </div>
-        </Modal>
+    return <Dialog
+        open={show}
+    >
+        <DialogTitle style={{width: 400}}>Изменение категории</DialogTitle>
+        <DialogContent>
+            <TextField style={{width: 400}} value={text} onChange={event => changeModalText(event.target.value)}
+                       id="standard-basic" label="Название (10 символов)"/>
+        </DialogContent>
+        <DialogActions>
+            <Button onClick={savePriority} color="primary">
+                Сохранить
+            </Button>
+            <Button onClick={closeModal} color="primary" autoFocus>
+                Закрыть
+            </Button>
+        </DialogActions>
+    </Dialog>
 
-    </div>
 };
 
 const mapStateToProps = ({

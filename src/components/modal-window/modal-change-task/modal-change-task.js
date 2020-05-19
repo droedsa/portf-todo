@@ -10,6 +10,16 @@ import {
     modalChangeTaskClose,
     modalChangeTaskSave,
 } from "../../../actions/bord";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import FormControl from "@material-ui/core/FormControl";
+import TextField from "@material-ui/core/TextField";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import DialogActions from "@material-ui/core/DialogActions";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
 
 
 const ModalChangeTask = ({
@@ -17,53 +27,63 @@ const ModalChangeTask = ({
                              onChangeTerm, onChangePriority, onChangeText, btnClose, btnSave, changeTask
                          }) => {
 
-    const {show,name,categories,priority} = changeTask;
+    const {show, name, categories, priority} = changeTask;
 
-    Modal.setAppElement('#root');
-    return <Modal
-        isOpen={show}
-        className="ModalAddNewTask"
+    return <div>
+        <Dialog
+            open={show}
+            fullWidth={true}
+        >
+            <DialogTitle>Добавление задачи</DialogTitle>
+            <DialogContent>
+                <FormControl fullWidth={true}>
+                    <TextField style={{marginBottom: 30}} value={name}
+                               onChange={event => onChangeText(event.target.value)}
+                               id="standard-basic" label="Название (10 символов)"/>
+                </FormControl>
+                <FormControl fullWidth={true}>
+                    <InputLabel id="categories-label">Категория</InputLabel>
+                    <Select
+                        style={{marginBottom: 30}}
+                        labelId="categories-label"
+                        defaultValue={'Все'}
+                        className='form'
+                        value={categories}
+                        onChange={event => onChangeCategories(event.target.value)}
+                    >
+                        <MenuItem value={'Все'}>Все</MenuItem>
+                        {
+                            customCategories.map(item => <MenuItem style={{width: "auto"}} key={item.id}
+                                                                   value={item.name}>{item.name}</MenuItem>)
+                        }
+                    </Select>
+                </FormControl>
+                <FormControl fullWidth={true}>
+                    <InputLabel id="priority-label">Приоритет</InputLabel>
+                    <Select
+                        labelId="priority-label"
+                        id="select-priority"
+                        value={priority}
+                        onChange={event => onChangePriority(event.target.value)}
+                    >
+                        {
+                            priorities.map(item => <MenuItem key={item.id}
+                                                             value={item.priority}>{item.priority}</MenuItem>)
+                        }
+                    </Select>
+                </FormControl>
 
-    >
-        <div className="modal-header bg-primary">
-            <h2>Добавление задачи</h2>
-        </div>
-        <div className="modal-body">
-            <p>Название</p>
-            <input onChange={event => onChangeText(event.target.value)} value={name} type="text" className='form-control'/>
-            <p>Выберите категорию</p>
-            <select className='form-control' value={categories} onChange={event => onChangeCategories(event.target.value)}>
-                <option  value="Все" >Все</option>
-                {
-                    customCategories.map(item => <option  key={item.id}
-                                                         value={item.name}>{item.name}</option>)
-                }
-            </select>
-            <p>Выберите приоритет</p>
-            <select className='form-control' value={priority} onChange={event => onChangePriority(event.target.value)}>
-                <option></option>
-                {
-                    priorities.map(item => <option  key={item.id}
-                                                   value={item.priority}>{item.priority}</option>)
-                }
-            </select>
-            {/*<DatePicker*/}
-            {/*    onChange={event => console.log(event)}*/}
-            {/*    value={term}*/}
-            {/*    inputFormat={'MM/DD/YY'}*/}
-            {/*/>*/}
-            <div className="btn-group">
-                <button onClick={btnSave} className='btn btn-primary'>
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={btnSave} color="primary">
                     Сохранить
-                </button>
-                <button onClick={btnClose} className='btn btn-primary'>
-                    Отменить
-                </button>
-            </div>
-
-
-        </div>
-    </Modal>
+                </Button>
+                <Button onClick={btnClose} color="primary" autoFocus>
+                    Закрыть
+                </Button>
+            </DialogActions>
+        </Dialog>
+    </div>
 };
 
 const mapStateToProps = ({

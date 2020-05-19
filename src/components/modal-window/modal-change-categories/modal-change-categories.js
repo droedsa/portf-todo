@@ -7,43 +7,39 @@ import {
     modalChangeCategoriesSave,
     modalChangeCategoriesTextChange
 } from "../../../actions/modalAC";
-import './modal-change.css'
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import TextField from "@material-ui/core/TextField";
+import DialogActions from "@material-ui/core/DialogActions";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
 
-const ModalChangeCategories = ({modalClose, modalChangeText, modalSaveBtnText, modalChangeCategoriesState,modalDeleteBtn}) => {
+const ModalChangeCategories = ({modalClose, modalChangeText, modalSaveBtnText, modalChangeCategoriesState, modalDeleteBtn}) => {
     const {open, text} = modalChangeCategoriesState;
-    Modal.setAppElement('#root');
 
-    return <div>
-        <Modal
-            isOpen={open}
-            className="ModalChange"
-        >
-            <div className="modal-header bg-primary">
-                <h5 className="modal-title ">Изменение категории</h5>
-                <button onClick={modalClose} className='btn'>
-                    <i className="fas fa-times"/>
-                </button>
-            </div>
-            <div className="modal-body">
-                <input value={text} onChange={event => modalChangeText(event.target.value)} type="text"
-                       className='form-control'/>
-                <div className="changeBtn d-flex justify-content-around">
-                    <button onClick={modalSaveBtnText} className='btn btn-primary mt-2'>
-                        Сохранить
-                    </button>
-                    <button onClick={modalDeleteBtn} className='btn btn-danger mt-2'>
-                        Удалить
-                    </button>
-                </div>
-
-            </div>
-
-        </Modal>
-
-    </div>
+    return <Dialog
+        open={open}
+    >
+        <DialogTitle style={{width: 400}}>Изменение категории</DialogTitle>
+        <DialogContent>
+            <TextField style={{width: 400}} value={text} onChange={event => modalChangeText(event.target.value)}
+                       id="standard-basic" label="Название (10 символов)"/>
+        </DialogContent>
+        <DialogActions>
+            <Button onClick={modalSaveBtnText} color="primary">
+                Сохранить
+            </Button>
+            <Button onClick={modalDeleteBtn} color="primary">
+                Удалить
+            </Button>
+            <Button onClick={modalClose} color="primary" autoFocus>
+                Закрыть
+            </Button>
+        </DialogActions>
+    </Dialog>
 };
 
-const mapStateToProps = ({categories:{modals: {modalChangeCategoriesState}, modalClose, modalChangeText, modalSaveBtnText, modalDeleteBtn}}) => {
+const mapStateToProps = ({categories: {modals: {modalChangeCategoriesState}, modalClose, modalChangeText, modalSaveBtnText, modalDeleteBtn}}) => {
     return {modalClose, modalChangeText, modalSaveBtnText, modalChangeCategoriesState, modalDeleteBtn}
 };
 

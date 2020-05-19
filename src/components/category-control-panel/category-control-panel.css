@@ -1,13 +1,10 @@
-.categories {
-    max-width: 300px;
-    min-width: 250px;
-    height: 100vh;
-    /*border-right: 1px solid black;*/
-    box-shadow: 8px 0 10px -5px grey;
-    /*background-color: red;*/
-    background-color: white;
-
-}
+/*.categories {*/
+/*    max-width: 300px;*/
+/*    min-width: 250px;*/
+/*    height: 100vh;*/
+/*    box-shadow: 8px 0 10px -5px grey;*/
+/*    background-color: white;*/
+/*}*/
 
 .categories-title {
     justify-content: space-around;
@@ -15,35 +12,16 @@
     min-height: 60px;
 }
 
-.categories-title i {
-    justify-content: right;
-    font-size: 20px;
+.сustom-categories i {
+    font-size: 14px;
     text-align: center;
-    width: 20px;
+    width: 30px;
     cursor: pointer;
 }
-.categories-title button{
-    margin: 0;
-    padding: 0;
-}
-
-.categories-title-input {
-    margin-top: 20px;
-    border-top: 0;
-    border-right: 0;
-    border-left: 0;
-    box-shadow: 0 0 0;
-    width: 95%;
-}
-
 .task {
-    /* display: flex; */
-    /* justify-content: space-between; */
     align-items: center;
     margin-top: 10px;
     width: 80%;
-    /* min-height: 50px; */
-    /* background-color: purple; */
     border-radius: 5px;
     margin-bottom: 15px;
     cursor: pointer;
@@ -51,9 +29,9 @@
 }
 
 .task-title {
-    color: #8b8b8b;
+    /*color: #000000;*/
     padding: 0;
-    /*width: 50px;*/
+    width: 100px;
     margin: 0 0 0 8px;
 
 }
@@ -69,15 +47,9 @@
     text-align: center;
 }
 
-.selected{
-    background-color: #482879;
-}
-
-.selected i{
-    color: white;
-}
 
 .сustom-categories {
+    margin-top: 5px;
     display: flex;
     align-items: center;
     justify-content: space-around;

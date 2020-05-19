@@ -7,68 +7,107 @@ import ModalChangeCategories from "../modal-window/modal-change-categories/modal
 
 import {changeCategoriesClick, changeCategoriesSearchPanel} from "../../actions/CategoriesAC";
 import {modalAddCategoriesOpenModal, modalChangeCategoriesOpen} from "../../actions/modalAC";
+import IconButton from "@material-ui/core/IconButton";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import Divider from "@material-ui/core/Divider";
+import List from "@material-ui/core/List";
+import Drawer from "@material-ui/core/Drawer";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
+import TextField from "@material-ui/core/TextField";
+import Paper from "@material-ui/core/Paper";
+import CreateIcon from '@material-ui/icons/Create';
 
 const CategoryControlPanel = ({
                                   selected, allTasK, customCategories,
                                   openModalAddCategories, openModalChangeCategories,
-                                  changeCategories, searchText, changeSearchInput, show
+                                  changeCategories, searchText, changeSearchInput, show,
+                                  classes, handleDrawerClose, theme, open, tasks
                               }) => {
     const customCat = customCategories.map(item => {
+        const countTask = tasks.filter(task => task.categories === item.name).length;
+
+
         if (item.name.includes(searchText)) {
-            return <div key={item.id}
-                        className={`сustom-categories categories-tasks ${item.name === selected ? 'selected' : null}`}>
-                <div className="task align-items-center ">
+            return <Paper elevation={4} key={item.id}
+                          style={{
+                              backgroundColor: item.name === selected ? '#512da8' : null,
+                              color: item.name === selected ? "white" : "black"
+                          }}
+                          className={`сustom-categories categories-tasks`}>
+                <div className="task">
                     <h4 onClick={() => changeCategories(item.name)} className='task-title'>{item.name}</h4>
                 </div>
-                <button className='btn pen-block'>
-                    <i onClick={() => openModalChangeCategories(item.id)} className="fas fa-pencil-alt "/>
-                </button>
-                <p className='task-number'>{item.count}</p>
-            </div>
+                <i onClick={() => openModalChangeCategories(item.id)} className="fas fa-pencil-alt pen-block"/>
+                <p className='task-number'>{countTask}</p>
+            </Paper>
         } else return null
     });
 
-    const showPanel = show ? {display: 'block'} : {display: 'none'};
     return (
-        <div className='categories ' style={showPanel}>
-            <div className="categories-title  d-flex">
-                <h2>Категории</h2>
-                <button onClick={openModalAddCategories} className='btn'>
-                    <i className="fas fa-plus"/>
-                </button>
-
+        <Drawer
+            className={classes.drawer}
+            variant="persistent"
+            anchor="left"
+            open={open}
+            classes={{
+                paper: classes.drawerPaper,
+            }}
+        >
+            <div className={classes.drawerHeader}>
+                <Typography variant='h5' align='center'>
+                    Категории
+                </Typography>
+                <IconButton onClick={handleDrawerClose}>
+                    {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
+                </IconButton>
             </div>
-            <div className="border-bottom"/>
-            <div className="categories-title-form d-flex justify-content-center">
-                <input onChange={event => changeSearchInput(event.target.value)} value={searchText} type="text"
-                       className='form-control categories-title-input'
-                       placeholder='Поиск категории'/>
-            </div>
+            <Divider/>
+            <Container>
+                <List>
+                    <Button onClick={openModalAddCategories} variant='contained'
+                            style={{backgroundColor: '#512da8', color: "white"}}
+                            fullWidth>
+                        Добавить новую
+                    </Button>
+                </List>
+            </Container>
+            <Divider/>
+            <Container>
+                <List>
+                    <TextField id="standard-basic" label="Поиск категорий"/>
+                    <Paper elevation={4} style={{
+                        backgroundColor: 'Все' === selected ? '#512da8' : null,
+                        color: 'Все' === selected ? "white" : "black"
+                    }}
+                           className='сustom-categories categories-tasks'>
+                        <div className='task'>
+                            <h4 onClick={() => changeCategories('Все')} className='task-title'>Все</h4>
+                        </div>
+                        <p className='task-number'>{tasks.length}</p>
+                    </Paper>
 
-            <div className={`сustom-categories categories-tasks align-items-center 
-            ${'Все' === selected ? 'selected' : null}`}>
-                <div className="task  ">
-                    <h4 onClick={() => changeCategories('Все')} className='task-title'>Все </h4>
-                </div>
-                <p className='task-number'>{allTasK}</p>
-            </div>
-
-            <div className="border-bottom"/>
-
-            {customCat}
-
+                </List>
+            </Container>
+            <Divider/>
+            <Container>
+                <List>
+                    {customCat}
+                </List>
+            </Container>
             <ModalAddCategories/>
             <ModalChangeCategories/>
-        </div>
+        </Drawer>
+
+
     )
 };
 
 const mapStateToProps = ({
-
-    
-
                              categories: {selected, customCategories, searchText, show},
-                             bord: {allTasK}, openModalAddCategories, openModalChangeCategories,
+                             bord: {allTasK, tasks}, openModalAddCategories, openModalChangeCategories,
                              changeCategories, changeSearchInput
                          }) => {
     return {
@@ -80,10 +119,10 @@ const mapStateToProps = ({
         changeCategories,
         searchText,
         changeSearchInput,
-        show
+        show,
+        tasks
     }
 };
-
 
 const mapDispatchToProps = (dispatch) => {
     return {

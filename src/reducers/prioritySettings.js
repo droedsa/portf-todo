@@ -77,12 +77,14 @@ const prioritySettings = (state, action) => {
                     {
                         id: state.addNewPriority.id + 1,
                         priority: state.addNewPriority.text,
-                        color: '#ffff'
+                        color: '#767676',
+
                     }
                 ],
                 addNewPriority: {
                     id: state.addNewPriority.id + 1,
-                    text: ''
+                    text: '',
+                    show:false
                 }
             }
         }
