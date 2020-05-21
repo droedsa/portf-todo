@@ -1,6 +1,4 @@
 import React from "react";
-import Modal from 'react-modal'
-// import './modal-add-categories.css'
 import {connect} from "react-redux";
 import {
     modalAddCategoriesChangeTextModal,
@@ -19,24 +17,25 @@ const ModalAddCategories = ({modals, modalClose, modalChangeText, modalSaveBtnTe
     const {modalAddCategoriesState: {open, text}} = modals;
     return <Dialog
         open={open}
-        >
-            <DialogTitle style={{width:400}}>Добавление категории</DialogTitle>
-            <DialogContent>
-                <TextField style={{width:400}} value={text} onChange={event => modalChangeText(event.target.value)}
-                           id="standard-basic" label="Название (10 символов)"/>
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={modalSaveBtnText} color="primary">
-                    Сохранить
-                </Button>
-                <Button onClick={modalClose} color="primary" autoFocus>
-                    Закрыть
-                </Button>
-            </DialogActions>
-        </Dialog>
+        fullWidth={true}
+    >
+        <DialogTitle>Добавление категории</DialogTitle>
+        <DialogContent>
+            <TextField fullWidth={true} value={text} onChange={event => modalChangeText(event.target.value)}
+                       id="standard-basic" label="Название (10 символов)"/>
+        </DialogContent>
+        <DialogActions>
+            <Button onClick={modalSaveBtnText} color="primary">
+                Сохранить
+            </Button>
+            <Button onClick={modalClose} color="primary" autoFocus>
+                Закрыть
+            </Button>
+        </DialogActions>
+    </Dialog>
 };
 
-const mapStateToProps = ({categories: {modals},modalClose,modalChangeText,modalSaveBtnText}) => {
+const mapStateToProps = ({categories: {modals}, modalClose, modalChangeText, modalSaveBtnText}) => {
     return {
         modals, modalClose, modalChangeText, modalSaveBtnText
     }

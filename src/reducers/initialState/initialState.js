@@ -1,6 +1,5 @@
 export const initialState = {
     bord: {
-        allTasK: 1,
         tasks: [
             {
                 id: 1,

@@ -1,3 +1,4 @@
 .sort-panel{
+    display: flex;
     margin-bottom: 40px;
 }

@@ -1,7 +1,6 @@
 import React from "react";
 import './board.css'
 import SortPanel from "../sort panel/sort-panel";
-import StatisticsPanel from "../statistics-panel/statistics-panel";
 import TasksTable from "../tasks-table/tasks-table";
 import {connect} from "react-redux";
 import {showCategoryPanel} from "../../actions/CategoriesAC";
@@ -10,11 +9,10 @@ import {modalSettingsPriorityOpen} from "../../actions/modalAC";
 import ModalAddNewTask from "../modal-window/modal-add-task/modal-add-task";
 import {modalCreateTaskOpen} from "../../actions/bord";
 import ModalChangeTask from "../modal-window/modal-change-task/modal-change-task";
-import Typography from "@material-ui/core/Typography";
 import clsx from "clsx";
 import Container from "@material-ui/core/Container";
 
-const Board = ({showCP, selected, showModalPrioritySettings, priorities, onClickAddNewTask, classes, open}) => {
+const Board = ({ priorities, onClickAddNewTask, classes, open}) => {
     return (
         <main
             className={clsx(classes.content, {
@@ -25,16 +23,17 @@ const Board = ({showCP, selected, showModalPrioritySettings, priorities, onClick
             <Container>
 
 
-                <StatisticsPanel/>
+                {/*<StatisticsPanel/>*/}
 
                 <SortPanel priorities={priorities} onClickAddNewTask={() => onClickAddNewTask()}/>
                 <TasksTable/>
 
+
+
                 <ModalBordSettings/>
                 <ModalAddNewTask/>
                 <ModalChangeTask/>
-                <div className="task-bord">
-                </div>
+
             </Container>
         </main>
 

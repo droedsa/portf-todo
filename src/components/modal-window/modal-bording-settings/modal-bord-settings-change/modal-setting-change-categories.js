@@ -1,5 +1,4 @@
 import React from "react";
-import Modal from 'react-modal'
 import './modal-settings-change-categories.css'
 import {connect} from "react-redux";
 import {
@@ -16,16 +15,17 @@ import Dialog from "@material-ui/core/Dialog";
 
 
 const ModalSettingsPriorityChangeCategories = ({closeModal, show, text, changeModalText, savePriority}) => {
-    Modal.setAppElement('#root');
+
     return <Dialog
+        fullWidth={true}
         open={show}
     >
-        <DialogTitle style={{width: 400}}>Изменение категории</DialogTitle>
+        <DialogTitle fullWidth={true} >Изменение категории</DialogTitle>
         <DialogContent>
-            <TextField style={{width: 400}} value={text} onChange={event => changeModalText(event.target.value)}
+            <TextField fullWidth={true} value={text} onChange={event => changeModalText(event.target.value)}
                        id="standard-basic" label="Название (10 символов)"/>
         </DialogContent>
-        <DialogActions>
+        <DialogActions  fullWidth={true}>
             <Button onClick={savePriority} color="primary">
                 Сохранить
             </Button>
@@ -38,8 +38,8 @@ const ModalSettingsPriorityChangeCategories = ({closeModal, show, text, changeMo
 };
 
 const mapStateToProps = ({
-                             closeModal, prioritySettings: {changePriorityText: {show, text}}, changeModalText,
-                             savePriority
+                             prioritySettings: {changePriorityText: {show, text}},
+                             changeModalText, savePriority , closeModal
                          }) => {
     return {
         closeModal, show, text, changeModalText, savePriority

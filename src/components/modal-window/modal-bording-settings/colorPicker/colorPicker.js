@@ -1,7 +1,6 @@
 import {SketchPicker} from "react-color";
 import React, {useState} from "react";
 import './colorPicker.css'
-import {makeStyles} from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
@@ -17,13 +16,12 @@ const ColorPicker = ({priority, id, changeColor, color, deletePriority, openChan
                 {
                     <Dialog
                         open={showCP}
-                        onClose={()=>setShowCP(false)}>
-
+                        onClose={() => setShowCP(false)}>
                         <SketchPicker color={color} onChange={event => changeColor(id, event.hex)}/>
                     </Dialog>
                 }
             </div>
-            <Button  onClick={() => setShowCP(showCP => !showCP)}>
+            <Button onClick={() => setShowCP(showCP => !showCP)}>
                 <div style={{backgroundColor: color}} className='color'/>
             </Button>
             <Button onClick={() => deletePriority(id)}>

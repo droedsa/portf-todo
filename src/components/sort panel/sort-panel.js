@@ -1,28 +1,46 @@
 import React from "react";
 import './sort-panel.css'
+import TextField from "@material-ui/core/TextField";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Button from "@material-ui/core/Button";
 
 const SortPanel = ({priorities,onClickAddNewTask}) => {
-    return <div className="sort-panel d-flex">
-        <input className='form-control' type="text" placeholder='Поиск в текущей категории'/>
+    return <div className="sort-panel">
 
-        <select className='form-control'>
-            <option>Все статусы</option>
-            <option>Завершенные задачи</option>
-            <option>Незавершонные задачи</option>
-        </select>
+        <TextField fullWidth={true} label='Поиск в текущей категории'/>
 
-        <select className='form-control'>
-            <option>Все приоритеты</option>
-            {
-                priorities.map(({priority,id}) => <option key={id}>
-                        {priority}
-                    </option>
-                )
-            }
-        </select>
+        <FormControl fullWidth={true}>
+            <InputLabel id="status-label">Статус задач</InputLabel>
+            <Select
+            labelId='status-label'
+            defaultValue='all'
+            >
+                <MenuItem  value='all'>Все статусы</MenuItem>
+                <MenuItem value='done-task'>Завершенные задачи</MenuItem>
+                <MenuItem value='open-task'>Незавершонные задачи</MenuItem>
+            </Select>
+        </FormControl>
 
-        <button className='btn form-control'>Сбросить фильтры</button>
-        <button onClick={onClickAddNewTask} className='btn btn-primary form-control'>Добавить</button>
+        <FormControl fullWidth={true}>
+            <InputLabel id="priority-status-label">Статус приоритетов</InputLabel>
+            <Select
+                labelId='priority-status-label'
+                defaultValue='Все'
+            >
+                <MenuItem value='Все'>Все приоритеты</MenuItem>
+                {
+                    priorities.map(({priority,id}) => <MenuItem key={id}>
+                            {priority}
+                        </MenuItem>
+                    )
+                }
+            </Select>
+        </FormControl>
+        {/*<Button fullWidth={true} color="secondary">Сбросить фильтры</Button>*/}
+        <Button style={{minWidth:100}} color='primary' variant='contained' onClick={onClickAddNewTask} className='btn btn-primary form-control'>Добавить</Button>
     </div>
 };
 

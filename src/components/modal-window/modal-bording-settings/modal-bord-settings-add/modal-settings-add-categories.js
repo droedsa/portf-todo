@@ -1,5 +1,4 @@
 import React from "react";
-import Modal from 'react-modal'
 import './modal-settings-add-categories.css'
 import {connect} from "react-redux";
 import {

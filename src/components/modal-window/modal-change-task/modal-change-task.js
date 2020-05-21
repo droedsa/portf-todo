@@ -1,7 +1,5 @@
 import React from "react";
-import Modal from 'react-modal'
 import './modal-change-task.css'
-import DatePicker from 'react-date-picker';
 import {connect} from "react-redux";
 import {
     modalChangeTaskChangeCategories,
@@ -29,61 +27,59 @@ const ModalChangeTask = ({
 
     const {show, name, categories, priority} = changeTask;
 
-    return <div>
-        <Dialog
-            open={show}
-            fullWidth={true}
-        >
-            <DialogTitle>Добавление задачи</DialogTitle>
-            <DialogContent>
-                <FormControl fullWidth={true}>
-                    <TextField style={{marginBottom: 30}} value={name}
-                               onChange={event => onChangeText(event.target.value)}
-                               id="standard-basic" label="Название (10 символов)"/>
-                </FormControl>
-                <FormControl fullWidth={true}>
-                    <InputLabel id="categories-label">Категория</InputLabel>
-                    <Select
-                        style={{marginBottom: 30}}
-                        labelId="categories-label"
-                        defaultValue={'Все'}
-                        className='form'
-                        value={categories}
-                        onChange={event => onChangeCategories(event.target.value)}
-                    >
-                        <MenuItem value={'Все'}>Все</MenuItem>
-                        {
-                            customCategories.map(item => <MenuItem style={{width: "auto"}} key={item.id}
-                                                                   value={item.name}>{item.name}</MenuItem>)
-                        }
-                    </Select>
-                </FormControl>
-                <FormControl fullWidth={true}>
-                    <InputLabel id="priority-label">Приоритет</InputLabel>
-                    <Select
-                        labelId="priority-label"
-                        id="select-priority"
-                        value={priority}
-                        onChange={event => onChangePriority(event.target.value)}
-                    >
-                        {
-                            priorities.map(item => <MenuItem key={item.id}
-                                                             value={item.priority}>{item.priority}</MenuItem>)
-                        }
-                    </Select>
-                </FormControl>
+    return <Dialog
+        open={show}
+        fullWidth={true}
+    >
+        <DialogTitle>Добавление задачи</DialogTitle>
+        <DialogContent>
+            <FormControl fullWidth={true}>
+                <TextField style={{marginBottom: 30}} value={name}
+                           onChange={event => onChangeText(event.target.value)}
+                           id="standard-basic" label="Название (10 символов)"/>
+            </FormControl>
+            <FormControl fullWidth={true}>
+                <InputLabel id="categories-label">Категория</InputLabel>
+                <Select
+                    style={{marginBottom: 30}}
+                    labelId="categories-label"
+                    defaultValue={'Все'}
+                    className='form'
+                    value={categories}
+                    onChange={event => onChangeCategories(event.target.value)}
+                >
+                    <MenuItem value={'Все'}>Все</MenuItem>
+                    {
+                        customCategories.map(item => <MenuItem style={{width: "auto"}} key={item.id}
+                                                               value={item.name}>{item.name}</MenuItem>)
+                    }
+                </Select>
+            </FormControl>
+            <FormControl fullWidth={true}>
+                <InputLabel id="priority-label">Приоритет</InputLabel>
+                <Select
+                    labelId="priority-label"
+                    id="select-priority"
+                    value={priority}
+                    onChange={event => onChangePriority(event.target.value)}
+                >
+                    {
+                        priorities.map(item => <MenuItem key={item.id}
+                                                         value={item.priority}>{item.priority}</MenuItem>)
+                    }
+                </Select>
+            </FormControl>
 
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={btnSave} color="primary">
-                    Сохранить
-                </Button>
-                <Button onClick={btnClose} color="primary" autoFocus>
-                    Закрыть
-                </Button>
-            </DialogActions>
-        </Dialog>
-    </div>
+        </DialogContent>
+        <DialogActions>
+            <Button onClick={btnSave} color="primary">
+                Сохранить
+            </Button>
+            <Button onClick={btnClose} color="primary" autoFocus>
+                Закрыть
+            </Button>
+        </DialogActions>
+    </Dialog>
 };
 
 const mapStateToProps = ({
@@ -92,15 +88,8 @@ const mapStateToProps = ({
                              onChangeCategories, onChangeTerm, onChangePriority, onChangeText, btnClose, btnSave
                          }) => {
     return {
-        customCategories,
-        priorities,
-        onChangeCategories,
-        onChangeTerm,
-        onChangePriority,
-        onChangeText,
-        btnClose,
-        btnSave,
-        changeTask
+        customCategories, priorities, onChangeCategories, onChangeTerm,
+        onChangePriority, onChangeText, btnClose, btnSave, changeTask
     }
 
 };

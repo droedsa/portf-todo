@@ -1,5 +1,5 @@
 import React from "react";
-import './category-control-panel.css'
+import './categoryl-panel.css'
 import {connect} from "react-redux";
 
 import ModalAddCategories from "../modal-window/modal-add-categories/modal-add-categories";
@@ -18,34 +18,13 @@ import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
-import CreateIcon from '@material-ui/icons/Create';
+import CategoryItem from "./category-item/category-item";
 
-const CategoryControlPanel = ({
-                                  selected, allTasK, customCategories,
-                                  openModalAddCategories, openModalChangeCategories,
-                                  changeCategories, searchText, changeSearchInput, show,
-                                  classes, handleDrawerClose, theme, open, tasks
-                              }) => {
-    const customCat = customCategories.map(item => {
-        const countTask = tasks.filter(task => task.categories === item.name).length;
-
-
-        if (item.name.includes(searchText)) {
-            return <Paper elevation={4} key={item.id}
-                          style={{
-                              backgroundColor: item.name === selected ? '#512da8' : null,
-                              color: item.name === selected ? "white" : "black"
-                          }}
-                          className={`сustom-categories categories-tasks`}>
-                <div className="task">
-                    <h4 onClick={() => changeCategories(item.name)} className='task-title'>{item.name}</h4>
-                </div>
-                <i onClick={() => openModalChangeCategories(item.id)} className="fas fa-pencil-alt pen-block"/>
-                <p className='task-number'>{countTask}</p>
-            </Paper>
-        } else return null
-    });
-
+const CategoryPanel = ({
+                           selected, customCategories, openModalAddCategories, openModalChangeCategories,
+                           changeCategories, searchText, changeSearchInput, classes, handleDrawerClose,
+                           theme, open, tasks
+                       }) => {
     return (
         <Drawer
             className={classes.drawer}
@@ -65,6 +44,7 @@ const CategoryControlPanel = ({
                 </IconButton>
             </div>
             <Divider/>
+
             <Container>
                 <List>
                     <Button onClick={openModalAddCategories} variant='contained'
@@ -74,27 +54,43 @@ const CategoryControlPanel = ({
                     </Button>
                 </List>
             </Container>
+
             <Divider/>
+
             <Container>
                 <List>
-                    <TextField id="standard-basic" label="Поиск категорий"/>
-                    <Paper elevation={4} style={{
-                        backgroundColor: 'Все' === selected ? '#512da8' : null,
-                        color: 'Все' === selected ? "white" : "black"
-                    }}
-                           className='сustom-categories categories-tasks'>
-                        <div className='task'>
-                            <h4 onClick={() => changeCategories('Все')} className='task-title'>Все</h4>
-                        </div>
-                        <p className='task-number'>{tasks.length}</p>
-                    </Paper>
+                    <div className="categories-input">
+                        <TextField fullWidth={true} className='categories-input' value={searchText}
+                                   onChange={event => changeSearchInput(event.target.value)}
+                                   label="Поиск категорий"/>
+                    </div>
+                    <Paper elevation={4}
+                           onClick={() => changeCategories('Все')}
+                           style={{
+                               backgroundColor: 'Все' === selected ? '#512da8' : null,
+                               color: 'Все' === selected ? "white" : "black",
+                               cursor: "pointer"
+                           }}
 
+                    >
+                        <div className='categories-item '>
+                            <h4 className='task-item-title'>Все</h4>
+                            <div className="number-container">
+                                <p className='categories-title-number'>{tasks.length}</p>
+                            </div>
+                        </div>
+
+                    </Paper>
                 </List>
             </Container>
             <Divider/>
             <Container>
                 <List>
-                    {customCat}
+
+                    <CategoryItem customCategories={customCategories} tasks={tasks} selected={selected}
+                                  changeCategories={changeCategories} searchText={searchText}
+                                  openModalChangeCategories={openModalChangeCategories}/>
+
                 </List>
             </Container>
             <ModalAddCategories/>
@@ -107,20 +103,12 @@ const CategoryControlPanel = ({
 
 const mapStateToProps = ({
                              categories: {selected, customCategories, searchText, show},
-                             bord: {allTasK, tasks}, openModalAddCategories, openModalChangeCategories,
+                             bord: {tasks}, openModalAddCategories, openModalChangeCategories,
                              changeCategories, changeSearchInput
                          }) => {
     return {
-        selected,
-        allTasK,
-        customCategories,
-        openModalAddCategories,
-        openModalChangeCategories,
-        changeCategories,
-        searchText,
-        changeSearchInput,
-        show,
-        tasks
+        selected, customCategories, openModalAddCategories, openModalChangeCategories, changeCategories,
+        searchText, changeSearchInput, show, tasks
     }
 };
 
@@ -133,4 +121,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryControlPanel);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryPanel);
