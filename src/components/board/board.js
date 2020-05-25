@@ -10,7 +10,7 @@ import ModalAddNewTask from "../modal-window/modal-add-task/modal-add-task";
 import {modalCreateTaskOpen} from "../../actions/bord";
 import ModalChangeTask from "../modal-window/modal-change-task/modal-change-task";
 import clsx from "clsx";
-import Container from "@material-ui/core/Container";
+
 
 const Board = ({ priorities, onClickAddNewTask, classes, open}) => {
     return (
@@ -20,21 +20,14 @@ const Board = ({ priorities, onClickAddNewTask, classes, open}) => {
             })}
         >
             <div className={classes.drawerHeader}/>
-            <Container>
-
-
-                {/*<StatisticsPanel/>*/}
-
                 <SortPanel priorities={priorities} onClickAddNewTask={() => onClickAddNewTask()}/>
                 <TasksTable/>
-
-
 
                 <ModalBordSettings/>
                 <ModalAddNewTask/>
                 <ModalChangeTask/>
 
-            </Container>
+
         </main>
 
 

@@ -19,12 +19,19 @@ import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import CategoryItem from "./category-item/category-item";
+import ModalAddRedux from "../modal-window/modal-add-categories/modal-add-redux";
+import ModalReduxAdd from "../modal-window/modal-add-categories/modal-add-redux";
 
 const CategoryPanel = ({
                            selected, customCategories, openModalAddCategories, openModalChangeCategories,
                            changeCategories, searchText, changeSearchInput, classes, handleDrawerClose,
                            theme, open, tasks
                        }) => {
+
+    const submit = (values) => {
+        console.log(values)
+    }
+
     return (
         <Drawer
             className={classes.drawer}
@@ -92,8 +99,10 @@ const CategoryPanel = ({
                                   openModalChangeCategories={openModalChangeCategories}/>
 
                 </List>
+
             </Container>
             <ModalAddCategories/>
+            {/*<ModalReduxAdd onSubmit={submit}/>*/}
             <ModalChangeCategories/>
         </Drawer>
 

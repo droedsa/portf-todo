@@ -10,9 +10,9 @@ import Button from "@material-ui/core/Button";
 const SortPanel = ({priorities,onClickAddNewTask}) => {
     return <div className="sort-panel">
 
-        <TextField fullWidth={true} label='Поиск в текущей категории'/>
+        <TextField fullWidth={true} label='Поиск в текущей категории' style={{marginBottom:10}}/>
 
-        <FormControl fullWidth={true}>
+        <FormControl fullWidth={true}  style={{marginBottom:10}}>
             <InputLabel id="status-label">Статус задач</InputLabel>
             <Select
             labelId='status-label'
@@ -24,7 +24,7 @@ const SortPanel = ({priorities,onClickAddNewTask}) => {
             </Select>
         </FormControl>
 
-        <FormControl fullWidth={true}>
+        <FormControl fullWidth={true}  style={{marginBottom:10}}>
             <InputLabel id="priority-status-label">Статус приоритетов</InputLabel>
             <Select
                 labelId='priority-status-label'

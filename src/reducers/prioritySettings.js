@@ -1,4 +1,6 @@
-const prioritySettings = (state, action) => {
+import {initialState} from "./initialState/initialState";
+
+const prioritySettings = (state = initialState.prioritySettings, action) => {
     switch (action.type) {
         case 'MODAL_PRIORITY_SETTINGS_OPEN': {
             return {
@@ -77,7 +79,7 @@ const prioritySettings = (state, action) => {
                     {
                         id: state.addNewPriority.id + 1,
                         priority: state.addNewPriority.text,
-                        color: '#767676',
+                        color: '#a6d4fa',
 
                     }
                 ],

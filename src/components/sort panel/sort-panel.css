@@ -2,3 +2,9 @@
     display: flex;
     margin-bottom: 40px;
 }
+
+@media (max-width: 1050px) {
+    .sort-panel{
+    flex-direction: column;
+    }
+}

@@ -18,6 +18,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 
 
+
 const ModalAddNewTask = ({
                              customCategories, priorities, onChangeCategories,
                              onChangePriority, onChangeText, btnClose, btnSave, createTask
@@ -56,7 +57,7 @@ const ModalAddNewTask = ({
                 <InputLabel id="priority-label">Приоритет</InputLabel>
                 <Select
                     labelId="priority-label"
-                    value={priorities[0].priority}
+                    defaultValue={priorities[0].priority}
                     onChange={event => onChangePriority(event.target.value)}
                     id="select-priority"
                 >

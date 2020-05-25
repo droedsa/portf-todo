@@ -1,4 +1,6 @@
-const categoriesPanel = (state, action) => {
+import {initialState} from "./initialState/initialState";
+
+const categoriesPanel = (state = initialState.categories, action) => {
         switch (action.type) {
             //Modal Priority Settings \\ISOLATED
             case 'MODAL_ADD_CATEGORIES_CLOSE_MODAL': {
@@ -7,8 +9,8 @@ const categoriesPanel = (state, action) => {
                     modals: {
                         ...state.modals,
                         modalAddCategoriesState: {
-                            ...state.modals.modalAddCategoriesState,
                             open: false,
+                            text: ''
                         }
                     }
                 };

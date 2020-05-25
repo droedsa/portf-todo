@@ -2,11 +2,12 @@ import React from "react";
 import {connect} from "react-redux";
 import {changeDoneState, modalChangeTaskOpen, modalDeleteTask} from "../../actions/bord";
 import TaskItem from "./task-item/task-item";
+import StatisticsPanel from "../statistics-panel/statistics-panel";
 
 const TasksTable = ({tasks, priorities, openChangeModal, deleteTask, doneBtn, selected}) => {
     const selectedTask = tasks.filter(item => item.categories === selected || selected === 'Все');
-
     return <div>
+        <StatisticsPanel selectedTask={selectedTask}/>
         <TaskItem selectedTask={selectedTask} priorities={priorities}
                   openChangeModal={openChangeModal} deleteTask={deleteTask}
                   doneBtn={doneBtn}

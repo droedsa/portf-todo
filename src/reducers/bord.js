@@ -1,4 +1,6 @@
-const bord = (state, action) => {
+import {initialState} from "./initialState/initialState";
+
+const bord = (state = initialState.bord, action) => {
     switch (action.type) {
         case 'MODAL_CREATE_TASK_OPEN': {
             return {
@@ -83,7 +85,8 @@ const bord = (state, action) => {
                 name: state.modal.createTask.name,
                 term: state.modal.createTask.term,
                 categories: state.modal.createTask.categories,
-                priority: state.modal.createTask.priority
+                priority: state.modal.createTask.priority,
+                done:false
             };
             console.log(newItem);
             return {
