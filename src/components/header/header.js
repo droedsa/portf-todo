@@ -11,21 +11,16 @@ import {connect} from "react-redux";
 
 
 
-const Header =({classes,handleDrawerOpen,open,showModalPrioritySettings})=>{
+const Header =({classes,handleDrawerToggle,open,showModalPrioritySettings})=>{
     return (
-        <AppBar
-            position="fixed"
-            className={clsx(classes.appBar, {
-                [classes.appBarShift]: open,
-            })}
-        >
+        <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
                 <IconButton
                     color="inherit"
                     aria-label="open drawer"
-                    onClick={handleDrawerOpen}
                     edge="start"
-                    className={clsx(classes.menuButton, open && classes.hide)}
+                    onClick={()=>handleDrawerToggle()}
+                    className={classes.menuButton}
                 >
                     <MenuIcon />
                 </IconButton>

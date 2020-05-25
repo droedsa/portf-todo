@@ -28,27 +28,13 @@ const CategoryPanel = ({
                            theme, open, tasks
                        }) => {
 
-    const submit = (values) => {
-        console.log(values)
-    }
 
     return (
-        <Drawer
-            className={classes.drawer}
-            variant="persistent"
-            anchor="left"
-            open={open}
-            classes={{
-                paper: classes.drawerPaper,
-            }}
-        >
-            <div className={classes.drawerHeader}>
-                <Typography variant='h5' align='center'>
+        <div>
+            <div className={classes.toolbar} style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+                <Typography variant='h5' >
                     Категории
                 </Typography>
-                <IconButton onClick={handleDrawerClose}>
-                    {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
-                </IconButton>
             </div>
             <Divider/>
 
@@ -104,7 +90,7 @@ const CategoryPanel = ({
             <ModalAddCategories/>
             {/*<ModalReduxAdd onSubmit={submit}/>*/}
             <ModalChangeCategories/>
-        </Drawer>
+        </div>
 
 
     )

@@ -28,11 +28,13 @@ const TaskItem = ({selectedTask, priorities, openChangeModal, deleteTask, doneBt
                     {name}
                 </div>
                 <div className='task-info'>
-                    <div className="task-category" style={textDone}>
-                        {categories}
-                    </div>
-                    <div className="task-priority" style={textDone}>
-                        {priority}
+                    <div className="task-status">
+                        <div className="task-category" style={textDone}>
+                            {categories}
+                        </div>
+                        <div className="task-priority" style={textDone}>
+                            {priority}
+                        </div>
                     </div>
                     <div className="task-action">
                         <Button onClick={() => deleteTask(id)}>

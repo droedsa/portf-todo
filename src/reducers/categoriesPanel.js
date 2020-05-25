@@ -105,10 +105,14 @@ const categoriesPanel = (state = initialState.categories, action) => {
                 const catItem = state.customCategories.find(({id}) =>
                     state.modals.modalChangeCategoriesState.id === id);
                 const itemIndex = state.customCategories.findIndex(({id}) => catItem.id === id);
+                const oldName = catItem.name;
                 const newItem = {
                     ...catItem,
                     name: state.modals.modalChangeCategoriesState.text
                 };
+                
+
+
                 return {
                         ...state,
                         customCategories: [

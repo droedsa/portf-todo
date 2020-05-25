@@ -57,6 +57,10 @@
     width: 100%;
 }
 
+.task-status{
+    display: flex;
+}
+
 
 @media (max-width: 700px) {
     .task-card{
@@ -81,6 +85,7 @@
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         border-bottom-left-radius: 0;
+        height: 30px;
     }
 
     .task-text{

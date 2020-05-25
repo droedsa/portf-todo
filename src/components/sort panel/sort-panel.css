@@ -1,10 +1,12 @@
-.sort-panel{
+.sort-panel {
     display: flex;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
+    height: 48px;
 }
 
 @media (max-width: 1050px) {
-    .sort-panel{
-    flex-direction: column;
+    .sort-panel {
+        flex-direction: column;
+        height: auto;
     }
 }

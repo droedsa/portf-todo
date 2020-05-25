@@ -12,25 +12,17 @@ import ModalChangeTask from "../modal-window/modal-change-task/modal-change-task
 import clsx from "clsx";
 
 
-const Board = ({ priorities, onClickAddNewTask, classes, open}) => {
+const Board = ({ priorities, onClickAddNewTask, classes}) => {
     return (
-        <main
-            className={clsx(classes.content, {
-                [classes.contentShift]: open,
-            })}
-        >
-            <div className={classes.drawerHeader}/>
+        <main className={classes.content} >
+            <div className={classes.toolbar} />
                 <SortPanel priorities={priorities} onClickAddNewTask={() => onClickAddNewTask()}/>
                 <TasksTable/>
 
                 <ModalBordSettings/>
                 <ModalAddNewTask/>
                 <ModalChangeTask/>
-
-
         </main>
-
-
     )
 };
 

@@ -40,7 +40,8 @@ const SortPanel = ({priorities,onClickAddNewTask}) => {
             </Select>
         </FormControl>
         {/*<Button fullWidth={true} color="secondary">Сбросить фильтры</Button>*/}
-        <Button style={{minWidth:100}} color='primary' variant='contained' onClick={onClickAddNewTask} className='btn btn-primary form-control'>Добавить</Button>
+        <Button style={{minWidth:100,backgroundColor:'#512da8',color:'#ffff'}}
+                variant='contained' onClick={onClickAddNewTask} className='btn btn-primary form-control'>Добавить</Button>
     </div>
 };
 
