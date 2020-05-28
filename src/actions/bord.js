@@ -49,7 +49,7 @@ const modalCreateTaskSave = () => {
 const modalChangeTaskOpen = (id) => {
     return {
         type: 'MODAL_CHANGE_TASK_OPEN',
-        payload:id
+        payload: id
     }
 };
 
@@ -62,28 +62,28 @@ const modalChangeTaskClose = () => {
 const modalChangeTaskChangeText = (text) => {
     return {
         type: 'MODAL_CHANGE_TASK_CHANGE_TEXT',
-        payload:text
+        payload: text
     }
 };
 
 const modalChangeTaskChangePriority = (value) => {
     return {
         type: 'MODAL_CHANGE_TASK_CHANGE_PRIORITY',
-        payload:value
+        payload: value
     }
 };
 
 const modalChangeTaskChangeCategories = (value) => {
     return {
         type: 'MODAL_CHANGE_TASK_CHANGE_CATEGORIES',
-        payload:value
+        payload: value
     }
 };
 
 const modalChangeTaskChangeTerm = (value) => {
     return {
         type: 'MODAL_CHANGE_TASK_CHANGE_TERM',
-        payload:value
+        payload: value
     }
 };
 
@@ -94,18 +94,38 @@ const modalChangeTaskSave = () => {
 };
 
 
-const modalDeleteTask=(id)=>{
-    return{
-        type:'BORD_DELETE_TASK',
-        payload:id
+const modalDeleteTask = (id) => {
+    return {
+        type: 'BORD_DELETE_TASK',
+        payload: id
     }
 };
 
 
-const changeDoneState=(id)=>{
-    return{
-        type:'BORD_DONE_TASK',
-        payload:id
+const changeDoneState = (id) => {
+    return {
+        type: 'BORD_DONE_TASK',
+        payload: id
+    }
+}
+
+// SORT PANEL
+const sortPanelText = (text) => {
+    return {
+        type: 'BORD_TEXT_CHANGE',
+        payload: text
+    }
+}
+const sortPanelStatusTasks = (value) => {
+    return {
+        type: 'BORD_STATUS_TASKS_CHANGE',
+        payload: value
+    }
+}
+const sortPanelStatusPriority = (value) => {
+    return {
+        type: 'BORD_STATUS_PRIORITY_CHANGE',
+        payload: value
     }
 }
 
@@ -126,5 +146,8 @@ export {
     modalChangeTaskOpen,
     modalChangeTaskSave,
     modalDeleteTask,
-    changeDoneState
+    changeDoneState,
+    sortPanelStatusPriority,
+    sortPanelStatusTasks,
+    sortPanelText
 }

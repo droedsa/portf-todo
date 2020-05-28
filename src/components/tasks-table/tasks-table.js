@@ -4,25 +4,25 @@ import {changeDoneState, modalChangeTaskOpen, modalDeleteTask} from "../../actio
 import TaskItem from "./task-item/task-item";
 import StatisticsPanel from "../statistics-panel/statistics-panel";
 
-const TasksTable = ({tasks, priorities, openChangeModal, deleteTask, doneBtn, selected}) => {
+const TasksTable = ({tasks, priorities, openChangeModal, deleteTask, doneBtn, selected,sortPanel}) => {
     const selectedTask = tasks.filter(item => item.categories === selected || selected === 'Все');
     return <div>
         <StatisticsPanel selectedTask={selectedTask}/>
         <TaskItem selectedTask={selectedTask} priorities={priorities}
                   openChangeModal={openChangeModal} deleteTask={deleteTask}
-                  doneBtn={doneBtn}
+                  doneBtn={doneBtn} sortPanel={sortPanel}
         />
     </div>
 };
 
 const mapStateToProps = ({
-                             bord: {tasks},
+                             bord: {tasks,sortPanel},
                              categories: {selected},
                              prioritySettings: {priorities},
                              openChangeModal, deleteTask, doneBtn
                          }) => {
     return {
-        tasks, priorities, openChangeModal, deleteTask, doneBtn, selected
+        tasks, priorities, openChangeModal, deleteTask, doneBtn, selected,sortPanel
     }
 };
 

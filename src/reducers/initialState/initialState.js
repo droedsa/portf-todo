@@ -18,6 +18,11 @@ export const initialState = {
                 done: false
             }
         ],
+        sortPanel: {
+            text: '',
+            statusTasks: 'Все статусы',
+            statusPriority: 'Все приоритеты'
+        },
 
         modal: {
             createTask: {

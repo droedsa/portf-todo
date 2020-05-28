@@ -105,14 +105,10 @@ const categoriesPanel = (state = initialState.categories, action) => {
                 const catItem = state.customCategories.find(({id}) =>
                     state.modals.modalChangeCategoriesState.id === id);
                 const itemIndex = state.customCategories.findIndex(({id}) => catItem.id === id);
-                const oldName = catItem.name;
                 const newItem = {
                     ...catItem,
                     name: state.modals.modalChangeCategoriesState.text
                 };
-                
-
-
                 return {
                         ...state,
                         customCategories: [
@@ -134,7 +130,6 @@ const categoriesPanel = (state = initialState.categories, action) => {
                     state.modals.modalChangeCategoriesState.id === id);
                 const itemIndex = state.customCategories.findIndex(({id}) => Item.id === id);
                 return {
-
                         ...state,
                         customCategories: [
                             ...state.customCategories.slice(0, itemIndex),
@@ -169,7 +164,6 @@ const categoriesPanel = (state = initialState.categories, action) => {
                     show: !state.show
                 }
             }
-
 
             default:
                 return state;

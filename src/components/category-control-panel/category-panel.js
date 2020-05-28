@@ -7,20 +7,16 @@ import ModalChangeCategories from "../modal-window/modal-change-categories/modal
 
 import {changeCategoriesClick, changeCategoriesSearchPanel} from "../../actions/CategoriesAC";
 import {modalAddCategoriesOpenModal, modalChangeCategoriesOpen} from "../../actions/modalAC";
-import IconButton from "@material-ui/core/IconButton";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
-import Drawer from "@material-ui/core/Drawer";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import CategoryItem from "./category-item/category-item";
-import ModalAddRedux from "../modal-window/modal-add-categories/modal-add-redux";
-import ModalReduxAdd from "../modal-window/modal-add-categories/modal-add-redux";
+
 
 const CategoryPanel = ({
                            selected, customCategories, openModalAddCategories, openModalChangeCategories,

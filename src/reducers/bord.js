@@ -86,7 +86,7 @@ const bord = (state = initialState.bord, action) => {
                 term: state.modal.createTask.term,
                 categories: state.modal.createTask.categories,
                 priority: state.modal.createTask.priority,
-                done:false
+                done: false
             };
             console.log(newItem);
             return {
@@ -202,7 +202,7 @@ const bord = (state = initialState.bord, action) => {
                 categories: state.modal.changeTask.categories,
                 priority: state.modal.changeTask.priority,
                 term: state.modal.changeTask.term,
-                done:Item.done
+                done: Item.done
             };
             return {
                 ...state,
@@ -247,6 +247,34 @@ const bord = (state = initialState.bord, action) => {
                     newItem,
                     ...state.tasks.slice(idx + 1)
                 ]
+            }
+        }
+            //SORT PANEL
+        case 'BORD_TEXT_CHANGE':{
+            return{
+                ...state,
+                sortPanel: {
+                    ...state.sortPanel,
+                    text: action.payload
+                }
+            }
+        }
+        case 'BORD_STATUS_TASKS_CHANGE':{
+            return{
+                ...state,
+                sortPanel: {
+                    ...state.sortPanel,
+                    statusTasks: action.payload
+                }
+            }
+        }
+        case 'BORD_STATUS_PRIORITY_CHANGE':{
+            return{
+                ...state,
+                sortPanel: {
+                    ...state.sortPanel,
+                    statusPriority: action.payload
+                }
             }
         }
 
