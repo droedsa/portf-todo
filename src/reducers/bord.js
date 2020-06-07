@@ -27,68 +27,15 @@ const bord = (state = initialState.bord, action) => {
             }
         }
 
-        case 'MODAL_CREATE_TASK_CHANGE_PRIORITY': {
-            return {
-                ...state,
-                modal: {
-                    ...state.modal,
-                    createTask: {
-                        ...state.modal.createTask,
-                        priority: action.payload
-                    }
-                }
-            }
-        }
-        case 'MODAL_CREATE_TASK_CHANGE_CATEGORIES': {
-            return {
-                ...state,
-                modal: {
-                    ...state.modal,
-                    createTask: {
-                        ...state.modal.createTask,
-                        categories: action.payload
-                    }
-                }
-            }
-        }
-
-        case 'MODAL_CREATE_TASK_CHANGE_TERM': {
-
-            return {
-                ...state,
-                modal: {
-                    ...state.modal,
-                    createTask: {
-                        ...state.modal.createTask,
-                        term: action.payload
-                    }
-                }
-            }
-        }
-
-        case 'MODAL_CREATE_TASK_CHANGE_TEXT': {
-            return {
-                ...state,
-                modal: {
-                    ...state.modal,
-                    createTask: {
-                        ...state.modal.createTask,
-                        name: action.payload
-                    }
-                }
-            }
-        }
-
         case 'MODAL_CREATE_TASK_SAVE': {
             const newItem = {
                 id: state.modal.createTask.id + 1,
-                name: state.modal.createTask.name,
+                name: action.payload.name,
                 term: state.modal.createTask.term,
-                categories: state.modal.createTask.categories,
-                priority: state.modal.createTask.priority,
+                categories: action.payload.categories,
+                priority: action.payload.priority,
                 done: false
             };
-            console.log(newItem);
             return {
                 ...state,
                 tasks: [
@@ -100,10 +47,6 @@ const bord = (state = initialState.bord, action) => {
                     createTask: {
                         show: false,
                         id: state.modal.createTask.id + 1,
-                        name: '',
-                        term: '',
-                        priority: '',
-                        categories: 'Все'
                     }
                 }
             }
@@ -141,67 +84,14 @@ const bord = (state = initialState.bord, action) => {
             }
         }
 
-        case 'MODAL_CHANGE_TASK_CHANGE_TEXT': {
-            return {
-                ...state,
-                modal: {
-                    ...state.modal,
-                    changeTask: {
-                        ...state.modal.changeTask,
-                        name: action.payload
-                    }
-                }
-            }
-        }
-
-        case 'MODAL_CHANGE_TASK_CHANGE_PRIORITY': {
-            return {
-                ...state,
-                modal: {
-                    ...state.modal,
-                    changeTask: {
-                        ...state.modal.changeTask,
-                        priority: action.payload
-                    }
-                }
-            }
-        }
-
-        case 'MODAL_CHANGE_TASK_CHANGE_CATEGORIES': {
-            return {
-                ...state,
-                modal: {
-                    ...state.modal,
-                    changeTask: {
-                        ...state.modal.changeTask,
-                        categories: action.payload
-                    }
-                }
-            }
-        }
-
-        case 'MODAL_CHANGE_TASK_CHANGE_TERM': {
-            return {
-                ...state,
-                modal: {
-                    ...state.modal,
-                    changeTask: {
-                        ...state.modal.changeTask,
-                        term: action.payload
-                    }
-                }
-            }
-        }
-
         case 'MODAL_CHANGE_TASK_SAVE': {
             const Item = state.tasks.find(({id}) => id === state.modal.changeTask.id);
             const idx = state.tasks.findIndex(({id}) => id === Item.id);
             const newItem = {
                 id: Item.id,
-                name: state.modal.changeTask.name,
-                categories: state.modal.changeTask.categories,
-                priority: state.modal.changeTask.priority,
-                term: state.modal.changeTask.term,
+                name: action.payload.name,
+                categories: action.payload.categories,
+                priority: action.payload.priority,
                 done: Item.done
             };
             return {
@@ -249,9 +139,11 @@ const bord = (state = initialState.bord, action) => {
                 ]
             }
         }
-            //SORT PANEL
-        case 'BORD_TEXT_CHANGE':{
-            return{
+
+
+        //SORT PANEL
+        case 'BORD_SORT_PANEL_TEXT_CHANGE': {
+            return {
                 ...state,
                 sortPanel: {
                     ...state.sortPanel,
@@ -259,8 +151,8 @@ const bord = (state = initialState.bord, action) => {
                 }
             }
         }
-        case 'BORD_STATUS_TASKS_CHANGE':{
-            return{
+        case 'BORD_SORT_PANEL_STATUS_CHANGE': {
+            return {
                 ...state,
                 sortPanel: {
                     ...state.sortPanel,
@@ -268,13 +160,80 @@ const bord = (state = initialState.bord, action) => {
                 }
             }
         }
-        case 'BORD_STATUS_PRIORITY_CHANGE':{
-            return{
+        case 'BORD_SORT_PANEL_PRIORITY_CHANGE': {
+            return {
                 ...state,
                 sortPanel: {
                     ...state.sortPanel,
                     statusPriority: action.payload
                 }
+            }
+        }
+
+        //Component state change when changing category and priority
+
+        case 'BORD_CHANGE_CATEGORIES': {
+            return {
+                ...state,
+                tasks: state.tasks.map(item => {
+                    if (item.categories === action.oldText) {
+                        console.log(action.newText)
+                        return {
+                            ...item,
+                            categories: action.newText
+                        }
+                    } else return {
+                        ...item
+                    }
+                })
+            }
+        }
+
+        case 'BORD_DELETE_CATEGORIES': {
+            return {
+                ...state,
+                tasks: state.tasks.map(item => {
+                    if (item.categories === action.oldCategory) {
+                        return {
+                            ...item,
+                            categories: 'Все'
+                        }
+                    } else return {
+                        ...item
+                    }
+                })
+            }
+        }
+
+        case 'BORD_CHANGE_PRIORITY': {
+            return {
+                ...state,
+                tasks: state.tasks.map(item => {
+                    if (item.priority === action.oldPriority) {
+                        return {
+                            ...item,
+                            priority: action.newPriority
+                        }
+                    } else return {
+                        ...item
+                    }
+                })
+            }
+        }
+
+        case 'BORD_DELETE_PRIORITY': {
+            return {
+                ...state,
+                tasks: state.tasks.map(item => {
+                    if (item.priority === action.oldPriority) {
+                        return {
+                            ...item,
+                            priority: ''
+                        }
+                    } else return {
+                        ...item
+                    }
+                })
             }
         }
 

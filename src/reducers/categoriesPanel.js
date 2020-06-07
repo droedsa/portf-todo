@@ -2,8 +2,8 @@ import {initialState} from "./initialState/initialState";
 
 const categoriesPanel = (state = initialState.categories, action) => {
         switch (action.type) {
-            //Modal Priority Settings \\ISOLATED
-            case 'MODAL_ADD_CATEGORIES_CLOSE_MODAL': {
+            //Modal Priority Settings
+            case 'MODAL_ADD_CATEGORIES_CLOSE': {
                 return {
                     ...state,
                     modals: {
@@ -15,7 +15,7 @@ const categoriesPanel = (state = initialState.categories, action) => {
                     }
                 };
             }
-            case 'MODAL_ADD_CATEGORIES_OPEN_MODAL': {
+            case 'MODAL_ADD_CATEGORIES_OPEN': {
                 return {
                     ...state,
                     modals: {
@@ -27,19 +27,8 @@ const categoriesPanel = (state = initialState.categories, action) => {
                     }
                 };
             }
-            case 'MODAL_ADD_CATEGORIES_CHANGE_TEXT_MODAL' : {
-                return {
-                    ...state,
-                    modals: {
-                        ...state.modals,
-                        modalAddCategoriesState: {
-                            text: action.payload,
-                            open: true
-                        }
-                    }
-                };
-            }
-            case 'MODAL_ADD_CATEGORIES_SAVE_BTN_MODAL': {
+
+            case 'MODAL_ADD_CATEGORIES_SAVE': {
                 return {
                     ...state,
                     CategoriesId: state.CategoriesId + 1,
@@ -47,7 +36,7 @@ const categoriesPanel = (state = initialState.categories, action) => {
                         ...state.customCategories,
                         {
                             id: state.CategoriesId + 1,
-                            name: state.modals.modalAddCategoriesState.text,
+                            name: action.payload,
                             count: 0
                         }
                     ],
@@ -55,7 +44,6 @@ const categoriesPanel = (state = initialState.categories, action) => {
                         ...state.modals,
                         modalAddCategoriesState: {
                             open: false,
-                            text: ''
                         }
                     }
                 }
@@ -88,26 +76,13 @@ const categoriesPanel = (state = initialState.categories, action) => {
                     }
                 };
             }
-            case'MODAL_CHANGE_CATEGORIES_TEXT_CHANGE_': {
-                return {
-                    ...state,
-                    modals: {
-                        ...state.modals,
-                        modalChangeCategoriesState: {
-                            ...state.modals.modalChangeCategoriesState,
-                            open: true,
-                            text: action.payload
-                        }
-                    }
-                };
-            }
             case'MODAL_CHANGE_CATEGORIES_SAVE': {
                 const catItem = state.customCategories.find(({id}) =>
                     state.modals.modalChangeCategoriesState.id === id);
                 const itemIndex = state.customCategories.findIndex(({id}) => catItem.id === id);
                 const newItem = {
                     ...catItem,
-                    name: state.modals.modalChangeCategoriesState.text
+                    name: action.payload
                 };
                 return {
                         ...state,
@@ -158,12 +133,7 @@ const categoriesPanel = (state = initialState.categories, action) => {
                     searchText: action.payload
                 }
             }
-            case 'SHOW_CATEGORY_PANEL': {
-                return {
-                    ...state,
-                    show: !state.show
-                }
-            }
+
 
             default:
                 return state;

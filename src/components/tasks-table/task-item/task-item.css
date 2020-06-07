@@ -94,4 +94,24 @@
         align-items: center;
         padding: 0 10px 0 10px;
     }
+
+    .task-category{
+        background-color: #d4d4d4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        width: 150px;
+        border-radius: 5px;
+    }
+
+    .task-priority{
+        background-color: #d4d4d4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        width: 150px;
+        border-radius: 5px;
+    }
 }

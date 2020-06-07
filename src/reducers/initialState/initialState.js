@@ -28,10 +28,7 @@ export const initialState = {
             createTask: {
                 show: false,
                 id: 4,
-                name: '',
                 term: '',
-                priority: '',
-                categories: 'Все'
             },
 
             changeTask: {
@@ -61,7 +58,6 @@ export const initialState = {
         modals: {
             modalAddCategoriesState: {
                 open: false,
-                text: ''
             },
             modalChangeCategoriesState: {
                 open: false,
@@ -77,12 +73,10 @@ export const initialState = {
         addNewPriority: {
             show: false,
             id: 5,
-            text: ''
         },
         changePriorityText: {
             id: 0,
             show: false,
-            text: ''
         },
         priorities: [
             {

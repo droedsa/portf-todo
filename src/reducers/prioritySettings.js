@@ -42,7 +42,7 @@ const prioritySettings = (state = initialState.prioritySettings, action) => {
         }
 
         // MODAL SETTINGS PRIORITY add new priority \\ISOLATED
-        case 'MODAL_PRIORITY_SETTINGS_ADD_NEW_PRIORITY_OPEN': {
+        case 'MODAL_PRIORITY_SETTINGS_NEW_OPEN': {
             return {
                 ...state,
                 addNewPriority: {
@@ -51,7 +51,7 @@ const prioritySettings = (state = initialState.prioritySettings, action) => {
                 }
             }
         }
-        case 'MODAL_PRIORITY_SETTINGS_ADD_NEW_PRIORITY_CLOSE': {
+        case 'MODAL_PRIORITY_SETTINGS_NEW_CLOSE': {
 
             return {
                 ...state,
@@ -62,31 +62,22 @@ const prioritySettings = (state = initialState.prioritySettings, action) => {
                 }
             }
         }
-        case 'MODAL_PRIORITY_SETTINGS_ADD_NEW_PRIORITY_CHANGE_TEXT': {
-            return {
-                ...state,
-                addNewPriority: {
-                    ...state.addNewPriority,
-                    text: action.payload
-                }
-            }
-        }
-        case 'MODAL_PRIORITY_SETTINGS_ADD_NEW_PRIORITY_SAVE': {
+
+        case 'MODAL_PRIORITY_SETTINGS_NEW_SAVE': {
             return {
                 ...state,
                 priorities: [
                     ...state.priorities,
                     {
                         id: state.addNewPriority.id + 1,
-                        priority: state.addNewPriority.text,
+                        priority: action.payload,
                         color: '#a6d4fa',
-
                     }
                 ],
                 addNewPriority: {
                     id: state.addNewPriority.id + 1,
                     text: '',
-                    show:false
+                    show: false
                 }
             }
         }
@@ -113,24 +104,14 @@ const prioritySettings = (state = initialState.prioritySettings, action) => {
                 }
             }
         }
-        case 'MODAL_PRIORITY_SETTINGS_CHANGE_TEXT': {
-            return {
-                ...state,
-                changePriorityText: {
-                    ...state.changePriorityText,
-                    show: true,
-                    text: action.payload
-                }
 
-            }
-        }
         case 'MODAL_PRIORITY_SETTINGS_CHANGE_SAVE': {
             const Item = state.priorities.find(({id}) =>
                 id === state.changePriorityText.id);
             const idx = state.priorities.findIndex(({id}) => id === Item.id);
             const newItem = {
                 ...Item,
-                priority: state.changePriorityText.text
+                priority: action.payload
             };
             return {
                 ...state,
@@ -140,7 +121,6 @@ const prioritySettings = (state = initialState.prioritySettings, action) => {
                     ...state.priorities.slice(idx + 1)
                 ],
                 changePriorityText: {
-                    text: '',
                     show: false,
                     id: null
                 }

@@ -11,6 +11,7 @@ const SortPanel = ({
                        priorities, onClickAddNewTask, sortPanel, onChangeTextInSortPanel,
                        onChangeStatusPriorityInSortPanel, onChangeStatusTasksInSortPanel
                    }) => {
+
     const {text, statusTasks, statusPriority} = sortPanel
     return <div className="sort-panel">
 

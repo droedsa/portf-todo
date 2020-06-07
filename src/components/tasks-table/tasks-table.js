@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {changeDoneState, modalChangeTaskOpen, modalDeleteTask} from "../../actions/bord";
+import {changeDoneTask, modalChangeTaskOpen, modalDeleteTask} from "../../actions/bordAC";
 import TaskItem from "./task-item/task-item";
 import StatisticsPanel from "../statistics-panel/statistics-panel";
 
@@ -30,7 +30,7 @@ const mapDispatchProps = (dispatch) => {
     return {
         openChangeModal: (id) => dispatch(modalChangeTaskOpen(id)),
         deleteTask: (id) => dispatch(modalDeleteTask(id)),
-        doneBtn: (id) => dispatch(changeDoneState(id))
+        doneBtn: (id) => dispatch(changeDoneTask(id))
     }
 };
 

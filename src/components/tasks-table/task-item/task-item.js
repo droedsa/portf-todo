@@ -12,6 +12,7 @@ const TaskItem = ({selectedTask, priorities, openChangeModal, deleteTask, doneBt
 
         const textDoneStyle = {textDecoration: 'line-through'};
         const textDone = done ? textDoneStyle : null;
+
         if (name.includes(text)
             && (statusPriority === priority || statusPriority === 'Все приоритеты')
             && (statusTasks === done || statusTasks === 'Все статусы'))

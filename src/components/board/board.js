@@ -1,15 +1,17 @@
 import React from "react";
-import './board.css'
 import SortPanel from "../sort panel/sort-panel";
 import TasksTable from "../tasks-table/tasks-table";
 import {connect} from "react-redux";
-import {showCategoryPanel} from "../../actions/CategoriesAC";
 import ModalBordSettings from "../modal-window/modal-bording-settings/modal-bord-settings";
-import {modalSettingsPriorityOpen} from "../../actions/modalAC";
-import ModalAddNewTask from "../modal-window/modal-add-task/modal-add-task";
-import {modalCreateTaskOpen, sortPanelStatusPriority, sortPanelStatusTasks, sortPanelText} from "../../actions/bord";
-import ModalChangeTask from "../modal-window/modal-change-task/modal-change-task";
-
+import {modalPrioritySettingsOpen} from "../../actions/modalAC";
+import {
+    modalCreateTaskOpen,
+    sortPanelStatusPriority,
+    sortPanelChangeStatusTasks,
+    sortPaneChangelText
+} from "../../actions/bordAC";
+import ModalAddTaskContainer from "../modal-window/modal-task-add/modal-add-task-container";
+import ModalChangeTaskContainer from "../modal-window/modal-task-change/modal-change-task-container";
 
 const Board = ({
                    priorities, onClickAddNewTask, classes, sortPanel, onChangeTextInSortPanel,
@@ -26,22 +28,20 @@ const Board = ({
                        onChangeStatusTasksInSortPanel={onChangeStatusTasksInSortPanel}
             />
             <TasksTable/>
-
+            <ModalAddTaskContainer/>
             <ModalBordSettings/>
-            <ModalAddNewTask/>
-            <ModalChangeTask/>
+            <ModalChangeTaskContainer/>
         </main>
     )
 };
 
 const mapStateToProps = ({
-                             showCP, categories: {selected}, showModalPrioritySettings,
+                             categories: {selected}, showModalPrioritySettings,
                              prioritySettings: {priorities}, onClickAddNewTask, bord: {sortPanel},
                              onChangeTextInSortPanel, onChangeStatusTasksInSortPanel,
                              onChangeStatusPriorityInSortPanel
                          }) => {
     return {
-        showCP,
         selected,
         showModalPrioritySettings,
         priorities,
@@ -55,11 +55,10 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        showCP: () => dispatch(showCategoryPanel()),
-        showModalPrioritySettings: () => dispatch(modalSettingsPriorityOpen()),
+        showModalPrioritySettings: () => dispatch(modalPrioritySettingsOpen()),
         onClickAddNewTask: () => dispatch(modalCreateTaskOpen()),
-        onChangeTextInSortPanel: (text) => dispatch(sortPanelText(text)),
-        onChangeStatusTasksInSortPanel: (value) => dispatch(sortPanelStatusTasks(value)),
+        onChangeTextInSortPanel: (text) => dispatch(sortPaneChangelText(text)),
+        onChangeStatusTasksInSortPanel: (value) => dispatch(sortPanelChangeStatusTasks(value)),
         onChangeStatusPriorityInSortPanel: (value) => dispatch(sortPanelStatusPriority(value))
     }
 };

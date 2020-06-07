@@ -1,22 +1,18 @@
-const modalAddCategoriesCloseModal = () => {
+const modalAddCategoriesClose = () => {
     return {
-        type: 'MODAL_ADD_CATEGORIES_CLOSE_MODAL'
+        type: 'MODAL_ADD_CATEGORIES_CLOSE'
     }
 };
-const modalAddCategoriesOpenModal = () => {
+const modalAddCategoriesOpen = () => {
     return {
-        type: 'MODAL_ADD_CATEGORIES_OPEN_MODAL'
+        type: 'MODAL_ADD_CATEGORIES_OPEN'
     }
 };
-const modalAddCategoriesChangeTextModal = (text) => {
+
+const modalAddCategoriesSave = (text) => {
     return {
-        type: 'MODAL_ADD_CATEGORIES_CHANGE_TEXT_MODAL',
+        type: 'MODAL_ADD_CATEGORIES_SAVE',
         payload: text
-    }
-};
-const modalAddCategoriesSaveBtnModal = () => {
-    return {
-        type: 'MODAL_ADD_CATEGORIES_SAVE_BTN_MODAL'
     }
 };
 
@@ -32,15 +28,11 @@ const modalChangeCategoriesOpen = (id) => {
         payload: id
     }
 };
-const modalChangeCategoriesTextChange = (text) => {
+
+const modalChangeCategoriesSave = (text) => {
     return {
-        type: 'MODAL_CHANGE_CATEGORIES_TEXT_CHANGE_',
+        type: 'MODAL_CHANGE_CATEGORIES_SAVE',
         payload: text
-    }
-};
-const modalChangeCategoriesSave = () => {
-    return {
-        type: 'MODAL_CHANGE_CATEGORIES_SAVE'
     }
 };
 const modalCategoriesDelete = () => {
@@ -50,99 +42,85 @@ const modalCategoriesDelete = () => {
 };
 
 // Modal Settings priority
-const modalSettingsPriorityOpen = () => {
+
+const modalPrioritySettingsOpen = () => {
     return {
         type: 'MODAL_PRIORITY_SETTINGS_OPEN'
     }
 };
-const modalSettingsPriorityClose = () => {
+const modalPrioritySettingsClose = () => {
     return {
         type: 'MODAL_PRIORITY_SETTINGS_CLOSE'
     }
 };
-const modalSettingsPriorityColorChange = (id, color) => {
+const modalPrioritySettingsColorChange = (id, color) => {
     return {
         type: 'MODAL_PRIORITY_SETTINGS_COLOR_CHANGE',
         color,
         id
     }
 };
-const modalSettingsPriorityDelete = (id) => {
+const modalPrioritySettingsDelete = (id) => {
     return {
         type: 'MODAL_PRIORITY_SETTINGS_DELETE',
-        payload:id
+        payload: id
     }
 };
 
 // MODAL SETTINGS PRIORITY add new priority
-const modalSettingsPriorityAddNewOpen = () => {
+const modalPrioritySettingsNewOpen = () => {
     return {
-        type: 'MODAL_PRIORITY_SETTINGS_ADD_NEW_PRIORITY_OPEN'
+        type: 'MODAL_PRIORITY_SETTINGS_NEW_OPEN'
     }
 };
-const modalSettingsPriorityAddNewClose = () => {
+const modalPrioritySettingsNewClose = () => {
     return {
-        type: 'MODAL_PRIORITY_SETTINGS_ADD_NEW_PRIORITY_CLOSE'
+        type: 'MODAL_PRIORITY_SETTINGS_NEW_CLOSE'
     }
 };
-const modalSettingsPriorityAddNewChangeText = (text) => {
+const modalPrioritySettingsNewSave = (text) => {
     return {
-        type: 'MODAL_PRIORITY_SETTINGS_ADD_NEW_PRIORITY_CHANGE_TEXT',
-        payload:text
-    }
-};
-const modalSettingsPriorityAddNewSave = () => {
-    return {
-        type: 'MODAL_PRIORITY_SETTINGS_ADD_NEW_PRIORITY_SAVE'
+        type: 'MODAL_PRIORITY_SETTINGS_NEW_SAVE',
+        payload: text
     }
 };
 
 // MODAL SETTINGS PRIORITY change priority
-const modalSettingsPriorityChangeOpen = (id) => {
+const modalPrioritySettingsChangeOpen = (id) => {
     return {
         type: 'MODAL_PRIORITY_SETTINGS_CHANGE_OPEN',
-        payload:id
+        payload: id
     }
 };
-const modalSettingsPriorityChangeClose = () => {
+const modalPrioritySettingsChangeClose = () => {
     return {
         type: 'MODAL_PRIORITY_SETTINGS_CHANGE_CLOSE'
     }
 };
-const modalSettingsPriorityChangeText = (text) => {
-    return {
-        type: 'MODAL_PRIORITY_SETTINGS_CHANGE_TEXT',
-        payload:text
-    }
-};
-const modalSettingsPriorityChangeSave = () => {
+const modalPrioritySettingsChangeSave = (text) => {
     return {
         type: 'MODAL_PRIORITY_SETTINGS_CHANGE_SAVE',
+        payload: text
     }
 };
-
 
 
 export {
-    modalAddCategoriesCloseModal,
-    modalAddCategoriesOpenModal,
-    modalAddCategoriesChangeTextModal,
-    modalAddCategoriesSaveBtnModal,
+    modalAddCategoriesClose,
+    modalAddCategoriesOpen,
+    modalAddCategoriesSave,
     modalChangeCategoriesClose,
     modalChangeCategoriesOpen,
     modalChangeCategoriesSave,
-    modalChangeCategoriesTextChange,
     modalCategoriesDelete,
-    modalSettingsPriorityDelete,
-    modalSettingsPriorityClose,
-    modalSettingsPriorityColorChange,
-    modalSettingsPriorityOpen,
-    modalSettingsPriorityAddNewClose,
-    modalSettingsPriorityAddNewOpen,
-    modalSettingsPriorityAddNewSave,
-    modalSettingsPriorityAddNewChangeText,
-    modalSettingsPriorityChangeClose,
-    modalSettingsPriorityChangeOpen,
-    modalSettingsPriorityChangeSave,
-    modalSettingsPriorityChangeText
+    modalPrioritySettingsDelete,
+    modalPrioritySettingsClose,
+    modalPrioritySettingsColorChange,
+    modalPrioritySettingsOpen,
+    modalPrioritySettingsNewClose,
+    modalPrioritySettingsNewOpen,
+    modalPrioritySettingsNewSave,
+    modalPrioritySettingsChangeClose,
+    modalPrioritySettingsChangeOpen,
+    modalPrioritySettingsChangeSave,
 }

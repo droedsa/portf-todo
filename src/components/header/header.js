@@ -5,12 +5,12 @@ import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
 import React from "react";
 import Button from "@material-ui/core/Button";
-import {modalSettingsPriorityOpen} from "../../actions/modalAC";
+import {modalPrioritySettingsOpen} from "../../actions/modalAC";
 import {connect} from "react-redux";
 
 
 
-const Header =({classes,handleDrawerToggle,open,showModalPrioritySettings})=>{
+const Header =({classes,handleDrawerToggle,showModalPrioritySettings})=>{
     return (
         <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
@@ -34,9 +34,6 @@ const Header =({classes,handleDrawerToggle,open,showModalPrioritySettings})=>{
     )
 };
 
-
-
-
 const mapStateToProps = ({showModalPrioritySettings}) => {
     return {
         showModalPrioritySettings
@@ -45,7 +42,7 @@ const mapStateToProps = ({showModalPrioritySettings}) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        showModalPrioritySettings: () => dispatch(modalSettingsPriorityOpen())
+        showModalPrioritySettings: () => dispatch(modalPrioritySettingsOpen())
     }
 };
 

@@ -2,12 +2,6 @@ import React from "react";
 import './categoryl-panel.css'
 import {connect} from "react-redux";
 
-import ModalAddCategories from "../modal-window/modal-add-categories/modal-add-categories";
-import ModalChangeCategories from "../modal-window/modal-change-categories/modal-change-categories";
-
-import {changeCategoriesClick, changeCategoriesSearchPanel} from "../../actions/CategoriesAC";
-import {modalAddCategoriesOpenModal, modalChangeCategoriesOpen} from "../../actions/modalAC";
-
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
@@ -17,18 +11,19 @@ import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import CategoryItem from "./category-item/category-item";
 
+import AddCategoriesContainer from "../modal-window/modal-categories-add/add-categories-container";
+import ChangeCategoriesContainer from "../modal-window/modal-categories-change/change-categories-container";
+import {changeCategories, changeCategoriesSearchPanel} from "../../actions/CategoriesAC";
+import {modalAddCategoriesOpen, modalChangeCategoriesOpen} from "../../actions/modalAC";
 
 const CategoryPanel = ({
                            selected, customCategories, openModalAddCategories, openModalChangeCategories,
-                           changeCategories, searchText, changeSearchInput, classes, handleDrawerClose,
-                           theme, open, tasks
+                           changeCategories, searchText, changeSearchInput, classes, tasks
                        }) => {
-
-
     return (
         <div>
-            <div className={classes.toolbar} style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-                <Typography variant='h5' >
+            <div className={classes.toolbar} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <Typography variant='h5'>
                     Категории
                 </Typography>
             </div>
@@ -72,23 +67,21 @@ const CategoryPanel = ({
                     </Paper>
                 </List>
             </Container>
+
             <Divider/>
+
             <Container>
                 <List>
-
                     <CategoryItem customCategories={customCategories} tasks={tasks} selected={selected}
                                   changeCategories={changeCategories} searchText={searchText}
                                   openModalChangeCategories={openModalChangeCategories}/>
-
                 </List>
 
             </Container>
-            <ModalAddCategories/>
-            {/*<ModalReduxAdd onSubmit={submit}/>*/}
-            <ModalChangeCategories/>
+
+            <AddCategoriesContainer/>
+            <ChangeCategoriesContainer/>
         </div>
-
-
     )
 };
 
@@ -105,9 +98,9 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        openModalAddCategories: () => dispatch(modalAddCategoriesOpenModal()),
+        openModalAddCategories: () => dispatch(modalAddCategoriesOpen()),
         openModalChangeCategories: (id) => dispatch(modalChangeCategoriesOpen(id)),
-        changeCategories: (name) => dispatch(changeCategoriesClick(name)),
+        changeCategories: (name) => dispatch(changeCategories(name)),
         changeSearchInput: (text) => dispatch(changeCategoriesSearchPanel(text))
     }
 };
