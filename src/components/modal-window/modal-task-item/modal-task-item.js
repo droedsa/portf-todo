@@ -67,7 +67,7 @@ const renderSelectFieldCategory = ({
     </FormControl>
 )
 
-let maxLength = maxLengthCreator(150);
+let maxLength = maxLengthCreator(500);
 
 const ModalTaskItem = ({handleSubmit, priorities, categories, modalClose}) => {
     return (
