@@ -1,22 +1,6 @@
 export const initialState = {
     bord: {
         tasks: [
-            {
-                id: 1,
-                name: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque commodi ciendis suscipit ullam?',
-                term: '20.10.20',
-                priority: 'Высокий',
-                categories: 'Машины',
-                done: false
-            },
-            {
-                id: 2,
-                name: 'Lorem ipsum dolor sit ciendis suscipit ullam?',
-                term: '20.10.20',
-                priority: 'Высокий',
-                categories: 'Машины',
-                done: false
-            }
         ],
         sortPanel: {
             text: '',
@@ -49,10 +33,6 @@ export const initialState = {
         selected: 'Все',
         searchText: '',
         customCategories: [
-            {
-                id: 1,
-                name: 'Машины',
-            }
         ],
 
         modals: {

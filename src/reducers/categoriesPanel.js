@@ -85,12 +85,12 @@ const categoriesPanel = (state = initialState.categories, action) => {
                     name: action.payload
                 };
                 return {
-                        ...state,
-                        customCategories: [
-                            ...state.customCategories.slice(0, itemIndex),
-                            newItem,
-                            ...state.customCategories.slice(itemIndex + 1),
-                        ],
+                    ...state,
+                    customCategories: [
+                        ...state.customCategories.slice(0, itemIndex),
+                        newItem,
+                        ...state.customCategories.slice(itemIndex + 1),
+                    ],
                     modals: {
                         ...state.modals,
                         modalChangeCategoriesState: {
@@ -105,11 +105,11 @@ const categoriesPanel = (state = initialState.categories, action) => {
                     state.modals.modalChangeCategoriesState.id === id);
                 const itemIndex = state.customCategories.findIndex(({id}) => Item.id === id);
                 return {
-                        ...state,
-                        customCategories: [
-                            ...state.customCategories.slice(0, itemIndex),
-                            ...state.customCategories.slice(itemIndex + 1),
-                        ],
+                    ...state,
+                    customCategories: [
+                        ...state.customCategories.slice(0, itemIndex),
+                        ...state.customCategories.slice(itemIndex + 1),
+                    ],
                     modals: {
                         ...state.modals,
                         modalChangeCategoriesState: {
@@ -134,6 +134,25 @@ const categoriesPanel = (state = initialState.categories, action) => {
                 }
             }
 
+            case 'INITIALIZE_CATEGORIES': {
+                const newData = []
+                const newCategories = []
+                for (let i = 0; i < action.payload.length; i++) {
+                    if (newData.includes(action.payload[i].categories)) {
+                    } else {
+                        newData.push(action.payload[i].categories);
+                        newCategories.push({
+                            id: action.payload[i].id,
+                            name: action.payload[i].categories
+                        })
+                    }
+                }
+
+                return {
+                    ...state,
+                    customCategories: newCategories
+                }
+            }
 
             default:
                 return state;

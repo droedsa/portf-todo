@@ -20,6 +20,8 @@ const CategoryPanel = ({
                            selected, customCategories, openModalAddCategories, openModalChangeCategories,
                            changeCategories, searchText, changeSearchInput, classes, tasks
                        }) => {
+
+
     return (
         <div>
             <div className={classes.toolbar} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>

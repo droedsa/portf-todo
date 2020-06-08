@@ -237,6 +237,13 @@ const bord = (state = initialState.bord, action) => {
             }
         }
 
+        case 'INITIALIZE_TASK':{
+            return {
+                ...state,
+                tasks: action.payload
+            }
+        }
+
         default:
             return state;
     }

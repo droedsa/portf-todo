@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import SortPanel from "../sort panel/sort-panel";
 import TasksTable from "../tasks-table/tasks-table";
 import {connect} from "react-redux";
@@ -8,15 +8,37 @@ import {
     modalCreateTaskOpen,
     sortPanelStatusPriority,
     sortPanelChangeStatusTasks,
-    sortPaneChangelText
+    sortPaneChangelText, initializeTask
 } from "../../actions/bordAC";
 import ModalAddTaskContainer from "../modal-window/modal-task-add/modal-add-task-container";
 import ModalChangeTaskContainer from "../modal-window/modal-task-change/modal-change-task-container";
+import {initializeCategories} from "../../actions/CategoriesAC";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Board = ({
                    priorities, onClickAddNewTask, classes, sortPanel, onChangeTextInSortPanel,
-                   onChangeStatusPriorityInSortPanel, onChangeStatusTasksInSortPanel
+                   onChangeStatusPriorityInSortPanel, onChangeStatusTasksInSortPanel, taskInitialize,
+                   initializeCategories
                }) => {
+
+    const [load, setLoad] = useState(false);
+
+    useEffect(() => {
+        fetch('https://next.json-generator.com/api/json/get/V1Gbh4whd?delay=1000')
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`Could not fetch this url, received ${res.status}`)
+                }
+                return res.json()
+            })
+            .then(data => {
+
+                taskInitialize(data);
+                initializeCategories(data);
+                setLoad(true);
+            }).catch(err => console.log(err))
+    }, [])
+
     return (
         <main className={classes.content}>
             <div className={classes.toolbar}/>
@@ -27,7 +49,11 @@ const Board = ({
                        onChangeStatusPriorityInSortPanel={onChangeStatusPriorityInSortPanel}
                        onChangeStatusTasksInSortPanel={onChangeStatusTasksInSortPanel}
             />
-            <TasksTable/>
+            {
+                load ? <TasksTable/> : <CircularProgress/>
+            }
+
+
             <ModalAddTaskContainer/>
             <ModalBordSettings/>
             <ModalChangeTaskContainer/>
@@ -39,7 +65,7 @@ const mapStateToProps = ({
                              categories: {selected}, showModalPrioritySettings,
                              prioritySettings: {priorities}, onClickAddNewTask, bord: {sortPanel},
                              onChangeTextInSortPanel, onChangeStatusTasksInSortPanel,
-                             onChangeStatusPriorityInSortPanel
+                             onChangeStatusPriorityInSortPanel, taskInitialize, initializeCategories
                          }) => {
     return {
         selected,
@@ -49,7 +75,9 @@ const mapStateToProps = ({
         sortPanel,
         onChangeTextInSortPanel,
         onChangeStatusTasksInSortPanel,
-        onChangeStatusPriorityInSortPanel
+        onChangeStatusPriorityInSortPanel,
+        taskInitialize, initializeCategories
+
     }
 };
 
@@ -59,7 +87,9 @@ const mapDispatchToProps = (dispatch) => {
         onClickAddNewTask: () => dispatch(modalCreateTaskOpen()),
         onChangeTextInSortPanel: (text) => dispatch(sortPaneChangelText(text)),
         onChangeStatusTasksInSortPanel: (value) => dispatch(sortPanelChangeStatusTasks(value)),
-        onChangeStatusPriorityInSortPanel: (value) => dispatch(sortPanelStatusPriority(value))
+        onChangeStatusPriorityInSortPanel: (value) => dispatch(sortPanelStatusPriority(value)),
+        taskInitialize: (data) => dispatch(initializeTask(data)),
+        initializeCategories: (data) => dispatch(initializeCategories(data))
     }
 };
 

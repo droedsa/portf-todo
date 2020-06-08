@@ -13,7 +13,7 @@ const modalCreateTaskClose = () => {
 const modalCreateTaskSave = (obj) => {
     return {
         type: 'MODAL_CREATE_TASK_SAVE',
-        payload:obj
+        payload: obj
     }
 };
 
@@ -34,7 +34,7 @@ const modalChangeTaskClose = () => {
 const modalChangeTaskSave = (obj) => {
     return {
         type: 'MODAL_CHANGE_TASK_SAVE',
-        payload:obj
+        payload: obj
     }
 };
 
@@ -76,28 +76,35 @@ const sortPanelStatusPriority = (value) => {
 
 
 // Component state change when changing category and priority
-const changeTaskCategories = (oldText,newText) =>{
-    return{
-        type:'BORD_CHANGE_CATEGORIES',
-        oldText,newText
+const changeTaskCategories = (oldText, newText) => {
+    return {
+        type: 'BORD_CHANGE_CATEGORIES',
+        oldText, newText
     }
 }
-const changeTaskPriority = (oldPriority,newPriority) => {
-    return{
-        type:'BORD_CHANGE_PRIORITY',
-        oldPriority,newPriority
+const changeTaskPriority = (oldPriority, newPriority) => {
+    return {
+        type: 'BORD_CHANGE_PRIORITY',
+        oldPriority, newPriority
     }
 }
 const deleteTaskPriority = (oldPriority) => {
-    return{
-        type:'BORD_DELETE_PRIORITY',
+    return {
+        type: 'BORD_DELETE_PRIORITY',
         oldPriority
     }
 }
 const deleteTaskCategory = (oldCategory) => {
-    return{
-        type:'BORD_DELETE_CATEGORIES',
+    return {
+        type: 'BORD_DELETE_CATEGORIES',
         oldCategory
+    }
+}
+
+const initializeTask = (data) => {
+    return {
+        type: 'INITIALIZE_TASK',
+        payload: data
     }
 }
 
@@ -117,5 +124,6 @@ export {
     changeTaskCategories,
     changeTaskPriority,
     deleteTaskPriority,
-    deleteTaskCategory
+    deleteTaskCategory,
+    initializeTask
 }

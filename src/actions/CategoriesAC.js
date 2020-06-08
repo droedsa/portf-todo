@@ -12,7 +12,15 @@ const changeCategoriesSearchPanel = (text) => {
     }
 };
 
+const initializeCategories = (data) => {
+    return {
+        type: 'INITIALIZE_CATEGORIES',
+        payload: data
+    }
+}
+
 export {
     changeCategories,
     changeCategoriesSearchPanel,
+    initializeCategories
 }
